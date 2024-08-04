@@ -1,3 +1,3 @@
 ## wpscry
 
-wpscry adalah sebuah script bash sederhana untuk melakukan serangan terhadap pin wps menggunkaan wash dan reaver.
+wpscry adalah sebuah script Bash sederhana untuk melakukan serangan terhadap Pin WPS menggunkaan alat wash dan reaver.
