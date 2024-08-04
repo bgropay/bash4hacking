@@ -7,7 +7,7 @@
 #     \_/\_/    |_|     |____/   \____| |_| \_\   |_| 
 #---------------------------------------------------------------------------------------------------------------------
 # [+] wpscry
-#     wpscry adalah sebuah script bash sederhana yang dirancang untuk melakukan serangan otomatis terhadap jaringan Wi-Fi yang menggunakan fitur WPS (Wi-Fi Protected Setup) dengan alat reaver.
+#     wpscry adalah sebuah script Bash sederhana yang dirancang untuk melakukan serangan otomatis terhadap jaringan Wi-Fi yang menggunakan fitur WPS (Wi-Fi Protected Setup) dengan alat reaver.
 #
 # [+] Pembuat
 #     - Ropay
@@ -15,7 +15,7 @@
 # [+] Github
 #     https://github.com/bgropay/bash4hacking.git
 #
-# [+] daftar alat yang diperlukan:
+# [+] Daftar alat yang diperlukan:
 #     - airmon-ng
 #     - iwconfig
 #     - wash
