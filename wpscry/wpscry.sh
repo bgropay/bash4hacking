@@ -69,8 +69,8 @@ function mengaktifkan_mode_monitor(){
 		else
 			echo "[-] Interface ${interface} belum dalam mode monitor."
 			echo "[*] Mengaktifkan mode monitor pada interface ${interface}..."
-			airmon-ng check kill 2>/dev/null 
-			airmon-ng start "${interface}" 2>/dev/null
+			airmon-ng check kill >> /dev/null 2>&1
+			airmon-ng start "${interface}" >> /dev/null 2>&1
 			if ip link show | grep -q -w  "${interface}mon"; then
 				interface="${interface}mon"
 			else
