@@ -17,8 +17,10 @@ daftar_dependensi_reaver=(
 	"libsdl2-2.0-0"
 )
 
+apt-get update -y
+
 for dependensi_reaver in "${daftar_dependensi_reaver[@]}"; do
-	apt-get install "${dependensi_reaver}"
+	apt-get install "${dependensi_reaver}" -y
 done
 
 cd "${path_app}"
