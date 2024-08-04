@@ -30,12 +30,13 @@ daftar_dependensi_scrpy=(
 	"libusb-1.0-0-dev"
 )
 
+apt-get update -y
+
 for dependensi_scrpy in "${daftar_dependensi_scrpy[@]}"; do
-	apt-get install "${dependensi_scrpy}"
+	apt-get install "${dependensi_scrpy}" -y
 done
 
 cd "${path_app}"
 git clone "${url_scrpy}"
 cd "${path_scrpy}"
 ./install_release.sh
-cd -
