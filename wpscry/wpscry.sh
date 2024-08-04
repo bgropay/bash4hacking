@@ -56,6 +56,10 @@ function cek_alat(){
         done
 
         if [[ "${#alat_belum_terinstal[@]}" -ne 0  ]]; then
+	       echo "[-] Script ini tidak dapat dijalankan, karena ada alat yang belum terinstal."
+	       echo ""
+	       echo "Alat:"
+	       echo ""
                for eror in "${alat_belum_terinstal[@]}"; do
                        echo "- ${eror}"
 	       done
