@@ -40,6 +40,29 @@ function cek_root(){
 	fi
 }
 
+function cek_alat(){
+
+        alat_belum_terinstal=()
+
+        daftar_alat=(
+	        "reaver"
+	        "wash"
+	)
+
+        for cek_alat in "${daftar_alat[@]}"; do
+                if ! command -v "${cek_alat}" >> /dev/null 2>&1; do
+                        alat_belum_terinstal+=("${cek_alat}")
+                done
+        done
+
+        if [[ "${#alat_belum_terinstal[@]}" -ne 0  ]]; then
+               for eror in "${alat_belum_terinstal[@]}"; do
+                       echo "- ${error}"
+	       done
+        fi
+        
+}
+
 # fungsi untuk membuat folder untuk menyimpan sesi dari alat reaver 
 function buat_folder(){
         nama_folder="sesi"
