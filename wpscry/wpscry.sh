@@ -48,7 +48,7 @@ function cek_alat(){
         daftar_alat=(
 	        "reaver"
 	        "wash"
-	        "airmong-ng"
+	        "airmon-ng" 
 	        "iwconfig"
 	)
 
