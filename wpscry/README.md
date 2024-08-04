@@ -2,7 +2,7 @@
 
 ![](https://github.com/bgropay/bash4hacking/blob/main/img/wpscry.jpg)
 
-`wpscry` adalah sebuah script Bash sederhana untuk melakukan serangan terhadap jaringan WPS menggunkaan alat wash dan reaver.
+`wpscry` adalah sebuah script Bash sederhana untuk melakukan serangan terhadap jaringan WPS menggunkaan alat [wash](https://github.com/t6x/reaver-wps-fork-t6x/) dan [reaver](https://github.com/t6x/reaver-wps-fork-t6x/).
 
 > Download: `wget https://raw.githubusercontent.com/bgropay/bash4hacking/main/wpscry.sh && chmod +x wpscry.sh`
 
