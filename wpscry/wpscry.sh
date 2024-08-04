@@ -159,6 +159,7 @@ function menjalankan_serangan(){
 # fungsi utama wpscry
 function wpscry(){
 	cek_root
+        buat_folder
 	mengatur_interface
 	mengaktifkan_mode_monitor
 	memindai_jaringan_wps
