@@ -35,6 +35,7 @@ daftar_dependensi_aircrack=(
 	"libnl-3-dev"
         "libnl-genl-3-dev"
 	"libssl-dev ethtool"
+        "libssl-dev"
         "shtool"
 	"rfkill"
         "zlib1g-dev"
