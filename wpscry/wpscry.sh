@@ -42,7 +42,7 @@ function cek_root(){
 
 function cek_alat(){
 
-        alat_belum_terinstal=()
+        daftar_alat_belum_terinstal=()
 
         daftar_alat=(
 	        "reaver"
@@ -51,18 +51,19 @@ function cek_alat(){
 
         for cek_alat in "${daftar_alat[@]}"; do
                 if ! command -v "${cek_alat}" >> /dev/null 2>&1; then 
-                        alat_belum_terinstal+=("${cek_alat}")
+                        daftar_alat_belum_terinstal+=("${cek_alat}")
                 fi
         done
 
-        if [[ "${#alat_belum_terinstal[@]}" -ne 0  ]]; then
+        if [[ "${#daftar_alat_belum_terinstal[@]}" -ne 0  ]]; then
 	       echo "[-] Script ini tidak dapat dijalankan, karena ada alat yang belum terinstal."
 	       echo ""
 	       echo "Alat:"
-	       echo ""
-               for eror in "${alat_belum_terinstal[@]}"; do
-                       echo "- ${eror}"
+	
+               for alat_belum_terinstal in "${daftar_alat_belum_terinstal[@]}"; do
+                       echo "- ${alat_belum_terinstal}"
 	       done
+	       exit 1
         fi
         
 }
