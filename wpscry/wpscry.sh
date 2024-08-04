@@ -57,7 +57,7 @@ function cek_alat(){
 
         if [[ "${#alat_belum_terinstal[@]}" -ne 0  ]]; then
                for eror in "${alat_belum_terinstal[@]}"; do
-                       echo "- ${error}"
+                       echo "- ${eror}"
 	       done
         fi
         
