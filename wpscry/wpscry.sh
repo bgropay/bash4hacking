@@ -9,6 +9,12 @@
 # [+] wpscry
 #     wpscry adalah sebuah script Bash sederhana yang dirancang untuk melakukan serangan otomatis terhadap jaringan Wi-Fi yang menggunakan fitur WPS (Wi-Fi Protected Setup) dengan alat reaver.
 #
+# [+] Peringatan:
+#     1. Legalitas: Menggunakan script ini untuk mengakses atau menyerang jaringan Wi-Fi tanpa izin eksplisit dari pemiliknya adalah ilegal dan melanggar hukum di banyak negara. Pastikan Anda hanya menggunakan script ini pada jaringan yang Anda miliki atau untuk tujuan yang sah dan dengan izin.
+#     2. Kepatuhan Hukum: Anda bertanggung jawab untuk mematuhi semua hukum dan peraturan yang berlaku di negara Anda terkait dengan akses dan keamanan jaringan.
+#     3. Etika Profesional: Gunakan script ini dengan etika profesional dan hanya dalam lingkungan yang sesuai seperti laboratorium keamanan siber atau simulasi yang disetujui.
+#     4. Tanggung Jawab: Penggunaan script ini dilakukan sepenuhnya atas risiko Anda sendiri. Pembuat script ini tidak bertanggung jawab atas penggunaan yang melanggar hukum atau dampak negatif lainnya.
+#
 # [+] Pembuat
 #     - Ropay
 # 
