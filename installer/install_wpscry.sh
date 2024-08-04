@@ -20,9 +20,9 @@ daftar_dependensi_reaver=(
 	"libsdl2-2.0-0"
 )
 
-daftar_dependensi_pixiewps=(
-        "build-essential"
-)
+# daftar_dependensi_pixiewps=(
+#         "build-essential"
+# )
 
 apt-get update -y
 
@@ -32,9 +32,9 @@ for dependensi_reaver in "${daftar_dependensi_reaver[@]}"; do
 done
 
 # menginstal seluruh dependensi yang diperlukan oleh pixiewps 
-for dependensi_pixiewps in "${daftar_dependensi_pixiewps[@]}"; do
-        apt-get install "${dependensi_pixiewps}"
-done
+# for dependensi_pixiewps in "${daftar_dependensi_pixiewps[@]}"; do
+#        apt-get install "${dependensi_pixiewps}"
+# done
 
 cd "${path_app}"
 git clone "${url_reaver}"
