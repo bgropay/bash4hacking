@@ -159,8 +159,6 @@ function menjalankan_serangan(){
 function menonaktifkan_mode_monitor(){
         airmon-ng stop "${interface}" >> /dev/null 2>&1
 	systemctl restart NetworkManager
-        echo ""
-        echo "Bye-bye script kiddies...👋"
         exit 0
 }
 
