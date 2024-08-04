@@ -48,6 +48,8 @@ function cek_alat(){
         daftar_alat=(
 	        "reaver"
 	        "wash"
+	        "airmong-ng"
+	        "iwconfig"
 	)
 
         for cek_alat in "${daftar_alat[@]}"; do
