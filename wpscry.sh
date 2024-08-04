@@ -1,9 +1,30 @@
 #!/bin/bash
+#---------------------------------------------------------------------------------------------------------------------
+#  __        __  ____    ____     ____   ____   __   __
+#  \ \      / / |  _ \  / ___|   / ___| |  _ \  \ \ / /
+#   \ \ /\ / /  | |_) | \___ \  | |     | |_) |  \ V / 
+#    \ V  V /   |  __/   ___) | | |___  |  _ <    | |  
+#     \_/\_/    |_|     |____/   \____| |_| \_\   |_| 
+#---------------------------------------------------------------------------------------------------------------------
+# [+] wpscry
+#     wpscry adalah sebuah script bash sederhana untuk melakukan serangan terhadap pin wps menggunkaan wash dan reaver.
 #
-# wpscry
+# [+] Pembuat
+#     - Ropay
+# 
+# [+] Github
+#     https://github.com/bgropay/bash4hacking.git
 #
-# wpscry adalah sebuah script bash sederhana untuk melakukan serangan terhadap pin wps menggunkaan wash dan reaver.
+# [+] daftar alat yang diperlukan:
+#     - airmon-ng
+#     - iwconfig
+#     - wash
+#     - reaver
 #
+# [+]  Cara menjalankannya:
+#      1. chmod +x wpscry.sh
+#      2. ./wpscry.sh
+#---------------------------------------------------------------------------------------------------------------------
 
 function cek_root(){
 	if [[ "$EUID" -ne 0 ]]; then
