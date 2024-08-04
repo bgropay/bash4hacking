@@ -34,6 +34,14 @@ function cek_root(){
 	fi
 }
 
+# fungsi untuk membuat folder untuk menyimpan sesi dari alat reaver 
+function buat_folder(){
+        nama_folder="sesi"
+	if [[ ! -d "${nama_folder}" ]]; then
+                mkdir -p "${nama_folder}"
+        fi
+}
+
 # fungsi untuk mengatur interface yang ingin digunakan
 function mengatur_interface(){
 	while true; do
