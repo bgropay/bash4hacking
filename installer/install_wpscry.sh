@@ -10,8 +10,8 @@ path_app="/opt"
 path_reaver="reaver-wps-fork-t6x"
 
 daftar_dependensi_reaver=(
-  "build-essential"
-  "libpcap-dev"
+        "build-essential"
+        "libpcap-dev"
 	"pixiewps"
 	"aircrack-ng"
 	"libsdl2-2.0-0"
