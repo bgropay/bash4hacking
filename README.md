@@ -4,4 +4,4 @@ Repositori ini berisi serangkaian program Bash yang dirancang untuk mengotomatis
 
 ## Daftar Program 
 
-- [wpscrack]()
+- [wpscrack](https://github.com/bgropay/bash4hacking/tree/main/wpscry)
