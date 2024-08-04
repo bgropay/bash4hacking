@@ -5,10 +5,11 @@
 # Jika ada bug atau masalah saat proses instalasi
 # laporkan di ''
 
-url="https://github.com/Genymobile/scrcpy"
-path="scrpy"
+url_scrpy="https://github.com/Genymobile/scrcpy"
+path_app="/opt"
+path_scrpy="scrpy"
 
-daftar_dependensi=(
+daftar_dependensi_scrpy=(
 	"ffmpeg"
 	"pulseaudio"
 	"libsdl2-2.0-0"
@@ -29,10 +30,12 @@ daftar_dependensi=(
 	"libusb-1.0-0-dev"
 )
 
-for dependensi in "${daftar_dependensi[@]}"; do
-	apt-get install "${dependensi}"
+for dependensi_scrpy in "${daftar_dependensi_scrpy[@]}"; do
+	apt-get install "${dependensi_scrpy}"
 done
 
-git clone "${url}"
-cd "${path}"
+cd "${path_app}"
+git clone "${url_scrpy}"
+cd "${path_scrpy}"
 ./install_release.sh
+cd -
