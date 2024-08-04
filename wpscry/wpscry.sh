@@ -40,6 +40,7 @@ function cek_root(){
 	fi
 }
 
+# fungsi untuk mengecek alat yang diperlukan oleh wpscry
 function cek_alat(){
 
         daftar_alat_belum_terinstal=()
