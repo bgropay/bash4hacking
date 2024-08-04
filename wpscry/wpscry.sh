@@ -50,9 +50,9 @@ function cek_alat(){
 	)
 
         for cek_alat in "${daftar_alat[@]}"; do
-                if ! command -v "${cek_alat}" >> /dev/null 2>&1; do
+                if ! command -v "${cek_alat}" >> /dev/null 2>&1; then 
                         alat_belum_terinstal+=("${cek_alat}")
-                done
+                fi
         done
 
         if [[ "${#alat_belum_terinstal[@]}" -ne 0  ]]; then
@@ -195,6 +195,7 @@ function menonaktifkan_mode_monitor(){
 # fungsi utama wpscry
 function wpscry(){
 	cek_root
+        cek_alat
         buat_folder
 	mengatur_interface
 	mengaktifkan_mode_monitor
