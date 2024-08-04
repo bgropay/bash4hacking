@@ -39,6 +39,7 @@ function buat_folder(){
         nama_folder="sesi"
 	if [[ ! -d "${nama_folder}" ]]; then
                 mkdir -p "${nama_folder}"
+		chmod 755 "${nama_folder}"
         fi
 }
 
