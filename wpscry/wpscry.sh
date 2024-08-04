@@ -152,7 +152,7 @@ function mengatur_target(){
 # fungsi untuk melakukan serangan terhadap target yang sudah diatur
 function menjalankan_serangan(){
         waktu=$(date "+%d-%m-%Y_%H:%M:%S")
-        sesi="${essid}_${waktu}.session"
+        sesi="${nama_folder}/${essid}_${waktu}.session"
 	reaver -i "${interface}" -c "${channel}" -b "${bssid}" -e "${essid}" -s "${sesi}"
 }
 
