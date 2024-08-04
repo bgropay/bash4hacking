@@ -3,7 +3,7 @@
 # Dibuat oleh Ropay
 #
 # Jika ada bug atau masalah saat proses instalasi
-# laporkan di ''
+# laporkan di 'https://github.com/bgropay/bash4hacking/issues'
 
 url_reaver="https://github.com/t6x/reaver-wps-fork-t6x"
 path_app="/opt"
