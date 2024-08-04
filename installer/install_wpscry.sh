@@ -27,4 +27,3 @@ cd "${path_reaver}/src"
 ./configure
 make
 make install
-cd -
