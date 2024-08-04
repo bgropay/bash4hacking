@@ -10,6 +10,7 @@ path_app="/opt"
 path_reaver="reaver-wps-fork-t6x"
 
 daftar_dependensi_reaver=(
+        "wireless-tools"
         "build-essential"
         "libpcap-dev"
 	"pixiewps"
