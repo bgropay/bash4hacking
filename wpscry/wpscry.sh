@@ -80,6 +80,42 @@ function buat_folder(){
         fi
 }
 
+# Fungsi untuk menampilkan peringatan 
+function peringatan(){
+        # Kata-kata peringatan 
+        clear
+        echo "PERINGATAN:"
+        echo ""
+        echo "Script ini hanya untuk tujuan pendidikan dan pengujian keamanan. Menggunakan script ini untuk mengakses atau"
+        echo "menyerang jaringan Wi-Fi tanpa izin eksplisit dari pemiliknya adalah ilegal dan melanggar hukum di banyak"
+        echo "negara. Pengguna bertanggung jawab penuh atas segala konsekuensi dari penggunaan script ini."
+        echo ""
+        echo "Dengan menggunakan script ini, Anda menyetujui:"
+        echo ""
+        echo "1. Menggunakan hanya pada jaringan yang Anda miliki atau dengan izin eksplisit dari pemiliknya."
+        echo "2. Tidak menggunakan script ini untuk tujuan ilegal atau tidak etis."
+        echo "3. Mematuhi semua hukum dan peraturan yang berlaku terkait dengan akses dan keamanan jaringan."
+        echo "4. Bertanggung jawab penuh atas semua tindakan yang Anda lakukan menggunakan script ini, termasuk kerusakan yang"
+        echo "   mungkin timbul pada jaringan atau data."
+        echo ""
+        echo "Jika Anda tidak menyetujui ketentuan ini, harap segera keluar dan tidak menggunakan script ini. Penggunaan script"
+        echo "ini berarti Anda telah membaca, memahami, dan menyetujui semua ketentuan di atas."
+        echo ""
+
+        # Nanya apakah mau menggunakan script atau tidak.
+	while true; do
+                read -p "Apakah Anda ingin melanjutkannya (iya/tidak): " nanya
+		if [[ "${nanya}" == "iya" ]]; then
+                        break
+		elif [[ "${nanya}" == "tidak" ]]; then
+                        exit 0
+                else
+		        echo "[-] Masukkan tidak valid. Harap masukkan'iya' atau'tidak'."
+                        continue
+                fi
+        done
+}
+
 # Fungsi untuk mengatur interface yang ingin digunakan.
 function mengatur_interface(){
 	while true; do
@@ -217,6 +253,8 @@ function wpscry(){
         cek_alat
 	# Memanggil fungsi buat_folder.
         buat_folder
+	# Memanggil fungsi peringatan 
+	peringatan
 	# Memanggil fungsi mengatur_interface.
 	mengatur_interface
         # Memanggil fungsi mengaktifkan_mode_monitor.
