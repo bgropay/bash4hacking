@@ -117,10 +117,9 @@ function peringatan(){
 }
 
 function banner(){        
-        echo "Selamat datang di wpscry"
+        echo "Selamat datang di wpscry (https://github.com/bgropay/wpscry)"
 	echo ""
         echo "wpscry - Serang otomatis jaringan Wi-Fi yang menggunakan vitur WPS."
-	echo "https://github.com/bgropay/wpscry"
         echo ""
         
 }
