@@ -116,8 +116,32 @@ function peringatan(){
         done
 }
 
+function banner(){
+        echo "                         _"
+        echo "                       _( )_"
+        echo "                      (_ O _)"
+        echo "                        (_)                            ,-.  _"
+        echo "              _________/_                    _________/_  \( )_"
+        echo "              \       / /                    \       / / (_ O _)"
+        echo "               )=====@=(                      )=====@=(    (_)"
+        echo "          ____/_________\____            ____/_________\____"
+        echo "              | /^\ /^\ |                    | /~\ /~\ |"
+        echo "             _| \0/_\0/ |_                  _| \a/_\a/ |_"
+        echo "            (_  _ (_) _  _)                (_  _'(_) _  _)"
+        echo "              \( \___/ )/                    \( \___/ )/"
+        echo "               \\\___///                      \\ ,-. //"
+        echo "            ,-._\\___//_,-.                 __ \\___// __"
+        echo "            |* *`-._,-' * |                |* *--._,--'* |"
+        echo "            | * * (_)* * *|                | * * (_)* * *|"
+        echo "            |* _,-' `-.*  |                |* ,-'   `-.* |"
+        echo "            `-'         `-'    Stef00      `./         \,'"
+        echo ""
+}
+
 # Fungsi untuk mengatur interface yang ingin digunakan.
 function mengatur_interface(){
+        clear
+	banner
 	while true; do
 		read -p "Interface: " interface
 		if [[ ! -z "${interface}" ]]; then
