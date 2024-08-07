@@ -117,13 +117,12 @@ function peringatan(){
 }
 
 function banner(){        
-        echo " _       _  ___    ___    ___    ___    _     _ "
-        echo "( )  _  ( )(  _`\ (  _`\ (  _`\ |  _`\ ( )   ( )"
-        echo "| | ( ) | || |_) )| (_(_)| ( (_)| (_) )`\`\_/'/'"
-        echo "| | | | | || ,__/'`\__ \ | |  _ | ,  /   `\ /'  "
-        echo "| (_/ \_) || |    ( )_) || (_( )| |\ \    | |   "
-        echo "`\___x___/'(_)    `\____)(____/'(_) (_)   (_)   "
-	echo ""                                                                                       
+        echo "Selamat datang di wpscry"
+	echo ""
+        echo "wpscry - Serang otomatis jaringan Wi-Fi yang menggunakan vitur WPS."
+	echo "https://github.com/bgropay/wpscry"
+        echo ""
+        
 }
 
 # Fungsi untuk mengatur interface yang ingin digunakan.
