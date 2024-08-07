@@ -116,18 +116,9 @@ function peringatan(){
         done
 }
 
-function banner(){        
-        echo "Selamat datang di wpscry (https://github.com/bgropay/wpscry)"
-	echo ""
-        echo "wpscry - Serang otomatis jaringan Wi-Fi yang menggunakan vitur WPS."
-        echo ""
-        
-}
-
 # Fungsi untuk mengatur interface yang ingin digunakan.
 function mengatur_interface(){
         clear
-	banner
 	while true; do
 		read -p "Interface: " interface
 		if [[ ! -z "${interface}" ]]; then
