@@ -188,7 +188,7 @@ function mengatur_essid(){
 				memindai_jaringan_wps
                         # Kondisi jika masukkan ESSID bukan 'kembali',
                         else
-                                echo "[+] ${p}ESSID: '${essid}'"
+                                echo "[+] ESSID: '${essid}'"
 			        break
                         fi	
 		# Kondisi jika masukkan ESSID kosong.
@@ -223,7 +223,7 @@ function mengatur_bssid(){
                         fi
 		# Kondisi jika masukkan BSSID kosong.
 		else
-			echo "[-] BSSID tidak boleh kososng."
+			echo "[-] BSSID tidak boleh kosong."
 			continue
 		fi
 	done
