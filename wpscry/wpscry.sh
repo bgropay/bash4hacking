@@ -182,6 +182,7 @@ function mengatur_essid(){
 		if [[ ! -z "${essid}" ]]; then
                         if [[ "${essid}" == "kembali" ]]; then
                                 mengatur_interface
+				mengaktifkan_mode_monitor
 				memindai_jaringan_wps
                         else
                                 echo "[+] ${p}ESSID: '${essid}'"
