@@ -272,7 +272,7 @@ function wpscry(){
         # Memanggil fungsi mengatur_essid.
 	mengatur_essid
         # Memanggil fungsi mengatur_bssid.
-        mengatur_essid
+        mengatur_bssid
 	# Memanggil fungsi mengatur_channel.
 	mengatur_channel
         # Memanggil fungsi menjalankan_serangan.
