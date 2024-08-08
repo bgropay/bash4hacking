@@ -174,9 +174,8 @@ function memindai_jaringan_wps(){
 	wash -i "${interface}"
 }
 
-# Fungsi untuk mengatur target yang ingin di serang.
-function mengatur_target(){
-
+# Fungsi untuk mengatur ESSID yang ingin di serang.
+function mengatur_essid(){
 	# Mengatur ESSID target
 	while true; do
 		read -p "ESSID: " essid
@@ -188,7 +187,10 @@ function mengatur_target(){
 			continue
 		fi
 	done
+}
 
+# Fungsi untuk mengatur BSSID yang ingin di serang.
+function mengatur_bssid(){
 	# Mengatur BSIID target
 	while  true; do
 		read -p "BSSID: " bssid
@@ -205,7 +207,10 @@ function mengatur_target(){
 			continue
 		fi
 	done
+}
 
+# Fungsi untuk mengatur Channel dari Access Point yang ingin di serang.
+function mengatur_channel(){
 	# Mengatur channel target
 	while true; do
 		read -p "Channel: " channel
@@ -264,8 +269,12 @@ function wpscry(){
 	mengaktifkan_mode_monitor
         # Memanggil fungsi memindai_jaringan_wps.
 	memindai_jaringan_wps
-        # Memanggil fungsi mengatur_target.
-	mengatur_target
+        # Memanggil fungsi mengatur_essid.
+	mengatur_essid
+        # Memanggil fungsi mengatur_bssid.
+        mengatur_essid
+	# Memanggil fungsi mengatur_channel.
+	mengatur_channel
         # Memanggil fungsi menjalankan_serangan.
 	menjalankan_serangan
         # Memanggil fungsi menonaktifkan_mode_monitor.
