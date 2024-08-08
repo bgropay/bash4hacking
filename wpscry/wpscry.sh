@@ -140,22 +140,29 @@ function mengatur_interface(){
 
 # Fungsi untuk mengaktifkan mode monitor pada interface yang sudah diatur.
 function mengaktifkan_mode_monitor(){
+                # Kondisi jika interface sudah berada dalam mode monitor.
 		if iwconfig "${interface}" 2>/dev/null | grep -q -w "Mode:Monitor"; then
 			echo "[+] Interface ${interface} sudah dalam mode monitor."
+                # Kondisi jika interface belum berada dalam mode monitor.
 		else
 			echo "[-] Interface ${interface} belum dalam mode monitor."
 			echo "[*] Mengaktifkan mode monitor pada interface ${interface}..."
 			airmon-ng check kill >> /dev/null 2>&1
 			airmon-ng start "${interface}" >> /dev/null 2>&1
+                        # Kondisi jika nama interface berubah menjadi 'mon' setelah diaktifkan ke mode monitor.
 			if ip link show | grep -q -w  "${interface}mon"; then
 				interface="${interface}mon"
+                        # Kondisi jika nama interface tidak berubah menjadi 'mon' setelah diaktifkan ke mode monitor.
 			else
 				interface="${interface}"
 			fi
 
+                        # 
                         if ip link show | grep -q -w "${interface}"; then
+			        # Kondisi jika interface berhasil diaktifkan ke mode monitor.
 			        if iwconfig "${interface}" 2>/dev/null | grep -q -w "Mode:Monitor"; then
 				        echo "[+] Berhasil mengaktifkan mode monitor pada interface ${interface}."
+	                        # Kondisi jika interface tidak berhasil diaktifkan ke mode monitor.
 			        else
 				        echo "[-] Gagal mengaktifkan mode monitor pada interface ${interface}."
 			        	exit 1
