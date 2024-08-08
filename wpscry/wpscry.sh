@@ -178,23 +178,33 @@ function mengaktifkan_mode_monitor(){
 function memindai_jaringan_wps(){
 	echo "[*] Memindai jaringan WPS (Tekan CTRL+C untuk menghentikan pemindaian)..."
 	echo ""
+        # Memindai jaringan WPS
 	wash -i "${interface}"
 }
 
 # Fungsi untuk mengatur ESSID yang ingin di serang.
 function mengatur_essid(){
-	# Mengatur ESSID target
+	# Memasukkan ESSID yang ingin diserang.
 	while true; do
 		read -p "ESSID: " essid
+                # Kondisi jika masukkan ESSID tidak kosong.
 		if [[ ! -z "${essid}" ]]; then
+                        # Kondisi jika masukkan ESSID 'kembali',
+			# maka kembali ke menu sebelumnya 'mengatur interface'.
                         if [[ "${essid}" == "kembali" ]]; then
+			        # Memanggil fungsi 'mengatur_interface'.
                                 mengatur_interface
+				# Memanggil fungsi 'mengaktifkan_mode_monitor'.
 				mengaktifkan_mode_monitor
+                                # Memanggil fungsi 'memindai_jaringan_wps'.
 				memindai_jaringan_wps
+                        # Kondisi jika masukkan ESSID bukan 'kembali',
+			# maka lanjut ke menu selanjutnya 'mengatur bssid'.
                         else
                                 echo "[+] ${p}ESSID: '${essid}'"
 			        break
                         fi	
+		# Kondisi jika masukkan ESSID kosong.
 		else
 			echo "[-] ESSID tidak boleh kosong."
 			continue
@@ -204,21 +214,29 @@ function mengatur_essid(){
 
 # Fungsi untuk mengatur BSSID yang ingin di serang.
 function mengatur_bssid(){
-	# Mengatur BSIID target
+	# Mengatur BSIID yang ingin diserang.
 	while  true; do
 		read -p "BSSID: " bssid
+                # Kondisi jika masukkan BSSID tidak kosong.
 		if [[ ! -z "${bssid}" ]]; then
+                        # Kondisi jika masukkan BSSID 'kembali',
+			# maka kembali ke menu sebelumnya 'mengatur essid'.
                         if [[ "${bssid}" == "kembali" ]]; then
                                 mengatur_essid
+			# Kondisi jika masukkan BSSID bukan 'kembali',
+			# maka lanjut ke menu selanjutnya 'mengatur channel'.
                         else
+			        # Kondisi jika masukkan BSSID merupakan format BSSID yang valid.
                                 if [[ "$bssid" =~ ^([0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}$ ]]; then
 				        echo "[+] BSSID: '${bssid}'"
 			                break
+		                # Kondisi jika masukkan BSSID bukan merupakan format BSSID yang valid.
 			        else
 				        echo "[-] BSSID tidak valid."
 				        continue
 			        fi
                         fi
+		# Kondisi jika masukkan BSSID kosong.
 		else
 			echo "[-] BSSID tidak boleh kososng."
 			continue
@@ -228,21 +246,29 @@ function mengatur_bssid(){
 
 # Fungsi untuk mengatur Channel dari Access Point yang ingin di serang.
 function mengatur_channel(){
-	# Mengatur channel target
+	# Mengatur channel dari Access Point yang ingin diserang.
 	while true; do
 		read -p "Channel: " channel
+                # Kondisi jika masukkan Channel tidak kosong.
 		if [[ ! -z "${channel}" ]]; then
+                        # Kondisi jika masukkan Channel 'kembali',
+			# maka kembali ke menu sebelumnya 'mengatur bssid'.
                         if [[ "${channel}" == "kembali" ]]; then
 			        mengatur_bssid
+	                # Kondisi jika masukkan Channel bukan 'kembali',
+			# maka lanjut ke menu selanjutnya 'menjalankan serangan'.
                         else
+			        # Kondisi jika masukkan Channel merupakan angka.
                                 if [[ "${channel}" =~ ^[0-9]+$ ]]; then
 				        echo "[+] Channel: '${channel}'"
 			 	        break
+	                        # Kondisi jika masukkan Channel bukan merupakan angka.
 			        else
 			    	        echo "[-] Channel tidak valid."
 				        continue
 			        fi
                         fi
+		# Kondisi jika masukkan channel kosong.
 		else
 			echo "[-] Channel tidak boleh kosong."
 			continue
