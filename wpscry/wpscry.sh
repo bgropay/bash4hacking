@@ -153,18 +153,16 @@ function mengaktifkan_mode_monitor(){
 				interface="${interface}"
 			fi
 
-		fi
+                        if ip link show | grep -q -w "${interface}"; then
+			        if iwconfig "${interface}" 2>/dev/null | grep -q -w "Mode:Monitor"; then
+				        echo "[+] Berhasil mengaktifkan mode monitor pada interface ${interface}."
+			        else
+				        echo "[-] Gagal mengaktifkan mode monitor pada interface ${interface}."
+			        	exit 1
+			        fi
 
-		if ip link show | grep -q -w "${interface}"; then
-			if iwconfig "${interface}" 2>/dev/null | grep -q -w "Mode:Monitor"; then
-				echo "[+] Berhasil mengaktifkan mode monitor pada interface ${interface}."
-			else
-				echo "[-] Gagal mengaktifkan mode monitor pada interface ${interface}."
-				exit 1
-			fi
-
+		        fi
 		fi
-		
 }
 
 # Fungsi untuk memindai jaringan wps menggunakan alat wash.
