@@ -180,8 +180,12 @@ function mengatur_essid(){
 	while true; do
 		read -p "ESSID: " essid
 		if [[ ! -z "${essid}" ]]; then
-			echo "[+] ${p}ESSID: '${essid}'"
-			break
+                        if [[ "${essid}" == "kembali" ]]; then
+                                mengatur_interface
+                        else
+                                echo "[+] ${p}ESSID: '${essid}'"
+			        break
+                        fi	
 		else
 			echo "[-] ESSID tidak boleh kosong."
 			continue
@@ -195,13 +199,17 @@ function mengatur_bssid(){
 	while  true; do
 		read -p "BSSID: " bssid
 		if [[ ! -z "${bssid}" ]]; then
-			if [[ "$bssid" =~ ^([0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}$ ]]; then
-				echo "[+] BSSID: '${bssid}'"
-				break
-			else
-				echo "[-] BSSID tidak valid."
-				continue
-			fi
+                        if [[ "${bssid}" == "kembali" ]]; then
+                                mengatur_essid
+                        else
+                                if [[ "$bssid" =~ ^([0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}$ ]]; then
+				        echo "[+] BSSID: '${bssid}'"
+			                break
+			        else
+				        echo "[-] BSSID tidak valid."
+				        continue
+			        fi
+                        fi
 		else
 			echo "[-] BSSID tidak boleh kososng."
 			continue
@@ -215,13 +223,17 @@ function mengatur_channel(){
 	while true; do
 		read -p "Channel: " channel
 		if [[ ! -z "${channel}" ]]; then
-			if [[ "${channel}" =~ ^[0-9]+$ ]]; then
-				echo "[+] Channel: '${channel}'"
-				break
-			else
-				echo "[-] Channel tidak valid."
-				continue
-			fi
+                        if [[ "${channel}" == "kembali" ]]; then
+			        mengatur_bssid
+                        else
+                                if [[ "${channel}" =~ ^[0-9]+$ ]]; then
+				        echo "[+] Channel: '${channel}'"
+			 	        break
+			        else
+			    	        echo "[-] Channel tidak valid."
+				        continue
+			        fi
+                        fi
 		else
 			echo "[-] Channel tidak boleh kosong."
 			continue
