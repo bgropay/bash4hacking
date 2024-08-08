@@ -119,6 +119,8 @@ function peringatan(){
 # Fungsi untuk mengatur interface yang ingin digunakan.
 function mengatur_interface(){
         clear
+	echo "Selamat datang di wpscry!"
+        echo ""
 	while true; do
 		read -p "Interface: " interface
 		if [[ ! -z "${interface}" ]]; then
