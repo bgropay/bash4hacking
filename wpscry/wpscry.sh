@@ -1,36 +1,15 @@
 #!/bin/bash
-#---------------------------------------------------------------------------------------------------------------------
-#  __        __  ____    ____     ____   ____   __   __
-#  \ \      / / |  _ \  / ___|   / ___| |  _ \  \ \ / /
-#   \ \ /\ / /  | |_) | \___ \  | |     | |_) |  \ V / 
-#    \ V  V /   |  __/   ___) | | |___  |  _ <    | |  
-#     \_/\_/    |_|     |____/   \____| |_| \_\   |_| 
-#---------------------------------------------------------------------------------------------------------------------
-# [+] wpscry
-#     wpscry adalah sebuah script Bash sederhana yang dirancang untuk melakukan serangan otomatis terhadap jaringan Wi-Fi yang menggunakan fitur WPS (Wi-Fi Protected Setup) dengan alat reaver.
-#
-# [+] Peringatan:
-#     1. Legalitas: Menggunakan script ini untuk mengakses atau menyerang jaringan Wi-Fi tanpa izin eksplisit dari pemiliknya adalah ilegal dan melanggar hukum di banyak negara. Pastikan Anda hanya menggunakan script ini pada jaringan yang Anda miliki atau untuk tujuan yang sah dan dengan izin.
-#     2. Kepatuhan Hukum: Anda bertanggung jawab untuk mematuhi semua hukum dan peraturan yang berlaku di negara Anda terkait dengan akses dan keamanan jaringan.
-#     3. Etika Profesional: Gunakan script ini dengan etika profesional dan hanya dalam lingkungan yang sesuai seperti laboratorium keamanan siber atau simulasi yang disetujui.
-#     4. Tanggung Jawab: Penggunaan script ini dilakukan sepenuhnya atas risiko Anda sendiri. Pembuat script ini tidak bertanggung jawab atas penggunaan yang melanggar hukum atau dampak negatif lainnya.
-#
-# [+] Pembuat
-#     - Ropay
-# 
-# [+] Github
-#     https://github.com/bgropay/bash4hacking.git
-#
-# [+] Daftar alat yang diperlukan:
-#     - airmon-ng
-#     - iwconfig
-#     - wash
-#     - reaver
-#
-# [+]  Cara menjalankannya:
-#      1. chmod +x wpscry.sh
-#      2. ./wpscry.sh
-#---------------------------------------------------------------------------------------------------------------------
+#--------------
+# wpscry - Serang otomatis jaringan Wi-Fi yang menggunakan vitur WPS.
+# Dibuat oleh Ropay
+#--------------
+# Jangan diotak-atik jing, GW cape bikinnya lu kira gampang?
+# Tinggal pake apa susahnya sih. ga usah deh lo mau recode 
+# segala terus ganti atas nama lo buat pansos. lu kira itu 
+# keren?. lo itu sama aja kaya sampah!
+#--------------
+# Maaf kalo kata-kata GW agak sedikit kasar :)
+#--------------
 
 # Fungsi untuk mengecek root.
 function cek_root(){
@@ -116,23 +95,33 @@ function peringatan(){
         done
 }
 
-# Fungsi untuk mengatur interface yang ingin digunakan.
-function mengatur_interface(){
+function selamat_datang(){
+        # Membersihkan layar terminal.
         clear
+	# Menampilkan ucapan selamat datang di wpscry.
 	echo "Selamat datang di wpscry!"
         echo ""
+}
+
+# Fungsi untuk mengatur interface yang ingin digunakan.
+function mengatur_interface(){
+        # Memasukkan nama interface yang ingin digunakan.
 	while true; do
-		read -p "Interface: " interface
+		read -p "Nama interface: " interface
+                # Kondisi jika masukkan nama interface tidak kosong.
 		if [[ ! -z "${interface}" ]]; then
+                        # Kondisi jika interface ada.
 			if ip link show | grep -q -w "${interface}"; then
 				echo "[+] Interface ${interface} ditemukan."
 				break
+                        # Kondisi jika interface tidak ada.
 			else
 				echo "[-] Interface ${interface} tidak ditemukan."
 				continue
 			fi
+                # Kondisi jika masukkan nama interface kosong.
 		else
-			echo "[-] Interface tidak boleh kosong."
+			echo "[-] Nama interface tidak boleh kosong."
 			continue
 		fi
 	done
@@ -159,7 +148,7 @@ function mengaktifkan_mode_monitor(){
 				interface="${interface}"
 			fi
 
-                        # Mengecek apakah interface ada.
+                        # Kondisi jika interface ada.
                         if ip link show | grep -q -w "${interface}"; then
 			        # Kondisi jika interface berhasil diaktifkan ke mode monitor.
 			        if iwconfig "${interface}" 2>/dev/null | grep -q -w "Mode:Monitor"; then
