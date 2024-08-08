@@ -190,7 +190,6 @@ function mengatur_essid(){
                 # Kondisi jika masukkan ESSID tidak kosong.
 		if [[ ! -z "${essid}" ]]; then
                         # Kondisi jika masukkan ESSID 'kembali',
-			# maka kembali ke menu sebelumnya 'mengatur interface'.
                         if [[ "${essid}" == "kembali" ]]; then
 			        # Memanggil fungsi 'mengatur_interface'.
                                 mengatur_interface
@@ -199,7 +198,6 @@ function mengatur_essid(){
                                 # Memanggil fungsi 'memindai_jaringan_wps'.
 				memindai_jaringan_wps
                         # Kondisi jika masukkan ESSID bukan 'kembali',
-			# maka lanjut ke menu selanjutnya 'mengatur bssid'.
                         else
                                 echo "[+] ${p}ESSID: '${essid}'"
 			        break
@@ -220,11 +218,9 @@ function mengatur_bssid(){
                 # Kondisi jika masukkan BSSID tidak kosong.
 		if [[ ! -z "${bssid}" ]]; then
                         # Kondisi jika masukkan BSSID 'kembali',
-			# maka kembali ke menu sebelumnya 'mengatur essid'.
                         if [[ "${bssid}" == "kembali" ]]; then
                                 mengatur_essid
 			# Kondisi jika masukkan BSSID bukan 'kembali',
-			# maka lanjut ke menu selanjutnya 'mengatur channel'.
                         else
 			        # Kondisi jika masukkan BSSID merupakan format BSSID yang valid.
                                 if [[ "$bssid" =~ ^([0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}$ ]]; then
@@ -252,11 +248,9 @@ function mengatur_channel(){
                 # Kondisi jika masukkan Channel tidak kosong.
 		if [[ ! -z "${channel}" ]]; then
                         # Kondisi jika masukkan Channel 'kembali',
-			# maka kembali ke menu sebelumnya 'mengatur bssid'.
                         if [[ "${channel}" == "kembali" ]]; then
 			        mengatur_bssid
 	                # Kondisi jika masukkan Channel bukan 'kembali',
-			# maka lanjut ke menu selanjutnya 'menjalankan serangan'.
                         else
 			        # Kondisi jika masukkan Channel merupakan angka.
                                 if [[ "${channel}" =~ ^[0-9]+$ ]]; then
