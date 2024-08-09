@@ -70,7 +70,15 @@ function instal_reaver(){
 
         # Menginstal seluruh dependensi yang diperlukan oleh reaver 
         for dependensi_reaver in "${daftar_dependensi_reaver[@]}"; do
+	        echo "[*] Menginstal dependensi '${dependensi_reaver}'..."
 	        apt-get install "${dependensi_reaver}" -y
+	        if [[ $? -eq 0 ]]; then
+	                sleep 3
+	                echo "[+] Dependensi '${dependensi_reaver}' berhasil diinstal."
+		else
+                        sleep 5
+			echo "[-] Dependensi '${dependensi_reaver}' gagal diinstal."
+                fi
         done
 
         # Instal reaver.
