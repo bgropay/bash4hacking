@@ -52,6 +52,8 @@ function cek_alat(){
                         # Menampilkan setiap alat yang belum terinstal.
                         echo "- ${alat_belum_terinstal}"
                 done
+                echo ""
+                echo "[*] Ketikkan 'instal_wpscry' untuk menginstal alat yang belum terinstal."
                 exit 1
         fi
     
