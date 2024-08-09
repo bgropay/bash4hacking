@@ -6,7 +6,11 @@
 # laporkan di 'https://github.com/bgropay/bash4hacking/issues'
 
 function cek_koneksi_internet(){
-        if ! ping -c 1 8.8.8.8 >> /dev/null 2>&1; then
+        echo "[*] Mengecek koneksi internet..."
+	sleep 5
+        if ping -c 1 8.8.8.8 >> /dev/null 2>&1; then
+                echo "[+] Anda memiliki koneksi internet. Proses instalasi dapat dilanjutkan."
+	else
                 echo "[-] Anda tidak memiliki koneksi internet. Pastikan Anda memiliki koneksi internet untuk menginstal wpscry."
 		exit 1
         fi
