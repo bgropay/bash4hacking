@@ -148,7 +148,15 @@ function instal_aircrack(){
 
         # Menginstal seluruh dependensi yang diperlukan oleh aircrack-ng
         for dependensi_aircrack in "${daftar_dependensi_aircrack[@]}"; do
+                echo "[*] Menginstal dependensi '${dependensi_aircrack}'..."
                 apt-get install "${dependensi_aircrack}" -y
+                if [[ $? -eq 0 ]]; then
+                        sleep 3
+                        echo "[+] Dependensi '${dependensi_aircrack}' berhasil diinstal."
+                else
+                        sleep 5
+                        echo "[-] Dependensi '${dependensi_aircrack}' gagal diinstal."
+                fi
         done
 
         # Instal aircrack-ng
