@@ -5,6 +5,9 @@
 # Jika ada bug atau masalah saat proses instalasi
 # laporkan di 'https://github.com/bgropay/bash4hacking/issues'
 
+# Path untuk menyimpan semua tools yang diperlukan oleh wpscry.
+path_app="/opt"
+
 # Fungsi untuk mengecek apakah Anda memiliki koneksi internet atau tidak.
 function cek_koneksi_internet(){
         echo "[*] Mengecek koneksi internet..."
@@ -143,33 +146,3 @@ function instal_aircrack(){
 
         cd ../ # kembali ke direktori '/opt'
 }
-
-
-
-
-
-# path
-path_app="/opt"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
