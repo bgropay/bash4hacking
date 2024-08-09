@@ -82,7 +82,15 @@ function instal_reaver(){
         done
 
         # Instal reaver.
+        echo "[*] Mengkloning reaver dari github..."
+        sleep 3
         git clone "${url_reaver}"
+        if [[ $? -eq 0 ]]; then
+                echo "[+] Reaver berhasil dikloning dari github."
+        else
+                echo "[-] Reaver gagal dikloning dari github. Proses instalasi dihentikan."
+                exit 1
+        fi
         cd "${path_reaver}/src"
         ./configure
         make
