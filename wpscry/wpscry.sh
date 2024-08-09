@@ -120,10 +120,10 @@ function selamat_datang(){
 
 # Fungsi untuk mengatur interface yang ingin digunakan.
 function mengatur_interface(){
-        # Memasukkan nama interface yang ingin digunakan.
+        # Memasukkan interface yang ingin digunakan.
         while true; do
-                read -p "Nama interface: " interface
-                # Kondisi jika nama interface tidak kosong.
+                read -p "Interface: " interface
+                # Kondisi jika interface tidak kosong.
                 if [[ ! -z "${interface}" ]]; then
                         # Kondisi jika interface ada.
                         if ip link show | grep -q -w "${interface}"; then
@@ -134,9 +134,9 @@ function mengatur_interface(){
                                 echo "[-] Interface ${interface} tidak ditemukan."
                                 continue
                         fi
-                # Kondisi jika nama interface kosong.
+                # Kondisi jika interface kosong.
                 else
-                        echo "[-] Nama interface tidak boleh kosong."
+                        echo "[-] Interface tidak boleh kosong."
                         continue
                 fi
         done
