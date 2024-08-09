@@ -1,15 +1,4 @@
 #!/bin/bash
-#--------------
-# wpscry - Serang otomatis jaringan Wi-Fi yang menggunakan vitur WPS.
-# Dibuat oleh Ropay
-#--------------
-# Jangan diotak-atik jing, GW cape bikinnya lu kira gampang?
-# Tinggal pake apa susahnya sih. ga usah deh lo mau recode 
-# segala terus ganti atas nama lo buat pansos. lu kira itu 
-# keren?. lo itu sama aja kaya sampah!
-#--------------
-# Maaf kalo kata-kata GW agak sedikit kasar :)
-#--------------
 
 # Fungsi untuk mengecek root.
 function cek_root(){
@@ -22,8 +11,10 @@ function cek_root(){
 # Fungsi untuk mengecek alat yang diperlukan oleh wpscry.
 function cek_alat(){
 
+        # List untuk menampung alat yang belum terinstal.
         daftar_alat_belum_terinstal=()
 
+        # List daftar alat yang diperlukan wpscry 
         daftar_alat=(
 	        "reaver"
 	        "wash"
@@ -31,18 +22,23 @@ function cek_alat(){
 	        "iwconfig"
 	)
 
+        # Melakukan iterasi dalam list 'daftar_alat'.
         for cek_alat in "${daftar_alat[@]}"; do
+	        # Memeriksa apakah sebuah alat yang tersimpan dalam variabel 'cek_alat' ada di sistem atau tidak.
                 if ! command -v "${cek_alat}" >> /dev/null 2>&1; then 
+		        # Menambahkan alat yang tidak ditemukan ke dalam list 'daftar_alat_belum_terinstal'.
                         daftar_alat_belum_terinstal+=("${cek_alat}")
                 fi
         done
 
+        # Memeriksa apakah ada elemen dalam list 'daftar_alat_belum_terinstal'.
         if [[ "${#daftar_alat_belum_terinstal[@]}" -ne 0  ]]; then
 	       echo "[-] Script ini tidak dapat dijalankan, karena ada alat yang belum terinstal."
 	       echo ""
 	       echo "Alat:"
-	
+	       # Melakukan iterasi melalui elemen-elemen dalam list 'daftar_alat_belum_terinstal'.
                for alat_belum_terinstal in "${daftar_alat_belum_terinstal[@]}"; do
+	               # Menampilkan setiap alat yang belum terinstal.
                        echo "- ${alat_belum_terinstal}"
 	       done
 	       exit 1
@@ -53,8 +49,11 @@ function cek_alat(){
 # Fungsi untuk membuat folder 'sesi' untuk menyimpan sesi dari alat reaver.
 function buat_folder(){
         nama_folder="sesi"
+	# Memeriksa apakah folder dengan nama yang disimpan dalam variabel 'nama_folder' tidak ada.
 	if [[ ! -d "${nama_folder}" ]]; then
+                # Membuat folder dengan nama yang tersimpan dalam variabel 'nama_folder'.
                 mkdir -p "${nama_folder}"
+		# Mengubah izin dari folder yang tersimpan dalam variabel 'nama_folder' menjadi 755.
 		chmod 755 "${nama_folder}"
         fi
 }
@@ -84,10 +83,13 @@ function peringatan(){
         # Nanya apakah mau menggunakan script atau tidak.
 	while true; do
                 read -p "Apakah Anda ingin melanjutkannya (iya/tidak): " nanya
+		# Memeriksa apakah variabel 'nanya' memiliki nilai 'iya'.
 		if [[ "${nanya}" == "iya" ]]; then
                         break
+		# Memeriksa kondisi tambahan jika kondisi sebelumnya tidak terpenuhi, dengan memeriksa apakah variabel 'nanya' memiliki nilai 'tidak'.
 		elif [[ "${nanya}" == "tidak" ]]; then
                         exit 0
+		# Menangani kondisi ketika semua pernyataan if dan elif sebelumnya tidak terpenuhi. 
                 else
 		        echo "[-] Masukkan tidak valid. Harap masukkan'iya' atau'tidak'."
                         continue
