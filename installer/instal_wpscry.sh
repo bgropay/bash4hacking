@@ -8,6 +8,14 @@
 # Path untuk menyimpan semua tools yang diperlukan oleh wpscry.
 path_app="/opt"
 
+# Fungsi untuk memeriksa apakah script dijalankan sebagai root.
+function cek_root(){
+        if [[ "$EUID" -ne 0 ]]; then
+                echo "[-] Script ini harus dijalankan sebagai root."
+                exit
+        fi
+}
+
 # Fungsi untuk mengecek apakah Anda memiliki koneksi internet atau tidak.
 function cek_koneksi_internet(){
         echo "[*] Mengecek koneksi internet..."
@@ -146,3 +154,16 @@ function instal_aircrack(){
 
         cd ../ # kembali ke direktori '/opt'
 }
+
+# Fungsi untuk menginstal wpscray.
+function instal_wpscry(){
+        cek_root
+        cek_koneksi_internet
+	cek_git
+        instal_reaver
+	instal_pixiewps
+        instal_aircrack
+}
+
+# Memanggil fungsi instal_wpscry.
+instal_wpscry
