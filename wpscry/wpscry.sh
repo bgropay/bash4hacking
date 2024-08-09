@@ -59,62 +59,63 @@ function cek_alat(){
 
 # Fungsi untuk membuat folder 'sesi' untuk menyimpan sesi alat reaver.
 function buat_folder(){
-    nama_folder="sesi"
-    # Memeriksa apakah folder dengan nama yang disimpan dalam variabel 'nama_folder' tidak ada.
-    if [[ ! -d "${nama_folder}" ]]; then
-        # Membuat folder dengan nama yang disimpan dalam variabel 'nama_folder'.
-        mkdir -p "${nama_folder}"
-        # Mengubah izin folder yang disimpan dalam variabel 'nama_folder' menjadi 755.
-        chmod 755 "${nama_folder}"
-    fi
+        # variabel 'nama_folder' dengan nama folder 'sesi'.
+        nama_folder="sesi"
+        # Memeriksa apakah folder dengan nama yang disimpan dalam variabel 'nama_folder' tidak ada.
+        if [[ ! -d "${nama_folder}" ]]; then
+                # Membuat folder dengan nama yang disimpan dalam variabel 'nama_folder'.
+                mkdir -p "${nama_folder}"
+                # Mengubah izin folder yang disimpan dalam variabel 'nama_folder' menjadi 755.
+                chmod 755 "${nama_folder}"
+        fi
 }
 
 # Fungsi untuk menampilkan peringatan.
 function peringatan(){
-    # Menampilkan pesan peringatan.
-    clear
-    echo "PERINGATAN:"
-    echo ""
-    echo "Skrip ini hanya untuk tujuan pendidikan dan pengujian keamanan. Menggunakan skrip ini untuk mengakses atau"
-    echo "menyerang jaringan Wi-Fi tanpa izin eksplisit dari pemiliknya adalah ilegal dan melanggar hukum di banyak"
-    echo "negara. Pengguna bertanggung jawab penuh atas segala konsekuensi dari penggunaan skrip ini."
-    echo ""
-    echo "Dengan menggunakan skrip ini, Anda menyetujui:"
-    echo ""
-    echo "1. Menggunakan hanya pada jaringan yang Anda miliki atau dengan izin eksplisit dari pemiliknya."
-    echo "2. Tidak menggunakan skrip ini untuk tujuan ilegal atau tidak etis."
-    echo "3. Mematuhi semua hukum dan peraturan yang berlaku terkait dengan akses dan keamanan jaringan."
-    echo "4. Bertanggung jawab penuh atas semua tindakan yang Anda lakukan menggunakan skrip ini, termasuk kerusakan yang"
-    echo "   mungkin timbul pada jaringan atau data."
-    echo ""
-    echo "Jika Anda tidak menyetujui ketentuan ini, harap segera keluar dan tidak menggunakan skrip ini. Penggunaan skrip"
-    echo "ini berarti Anda telah membaca, memahami, dan menyetujui semua ketentuan di atas."
-    echo ""
+        # Menampilkan pesan peringatan.
+        clear
+        echo "PERINGATAN:"
+        echo ""
+        echo "Skrip ini hanya untuk tujuan pendidikan dan pengujian keamanan. Menggunakan skrip ini untuk mengakses atau"
+        echo "menyerang jaringan Wi-Fi tanpa izin eksplisit dari pemiliknya adalah ilegal dan melanggar hukum di banyak"
+        echo "negara. Pengguna bertanggung jawab penuh atas segala konsekuensi dari penggunaan skrip ini."
+        echo ""
+        echo "Dengan menggunakan skrip ini, Anda menyetujui:"
+        echo ""
+        echo "1. Menggunakan hanya pada jaringan yang Anda miliki atau dengan izin eksplisit dari pemiliknya."
+        echo "2. Tidak menggunakan skrip ini untuk tujuan ilegal atau tidak etis."
+        echo "3. Mematuhi semua hukum dan peraturan yang berlaku terkait dengan akses dan keamanan jaringan."
+        echo "4. Bertanggung jawab penuh atas semua tindakan yang Anda lakukan menggunakan skrip ini, termasuk kerusakan yang"
+        echo "   mungkin timbul pada jaringan atau data."
+        echo ""
+        echo "Jika Anda tidak menyetujui ketentuan ini, harap segera keluar dan tidak menggunakan skrip ini. Penggunaan skrip"
+        echo "ini berarti Anda telah membaca, memahami, dan menyetujui semua ketentuan di atas."
+        echo ""
 
-    # Menanyakan apakah pengguna ingin melanjutkan atau tidak.
-    while true; do
-        read -p "Apakah Anda ingin melanjutkan (iya/tidak): " nanya
-        # Memeriksa apakah variabel 'nanya' memiliki nilai 'iya'.
-        if [[ "${nanya}" == "iya" ]]; then
-            break
-        # Memeriksa kondisi tambahan jika kondisi sebelumnya tidak terpenuhi, dengan memeriksa apakah variabel 'nanya' memiliki nilai 'tidak'.
-        elif [[ "${nanya}" == "tidak" ]]; then
-            exit 0
-        # Menangani kondisi ketika semua pernyataan if dan elif sebelumnya tidak terpenuhi.
-        else
-            echo "[-] Masukan tidak valid. Harap masukkan 'iya' atau 'tidak'."
-            continue
-        fi
-    done
+        # Menanyakan apakah pengguna ingin melanjutkan atau tidak.
+        while true; do
+                read -p "Apakah Anda ingin melanjutkan (iya/tidak): " nanya
+                # Memeriksa apakah variabel 'nanya' memiliki nilai 'iya'.
+                if [[ "${nanya}" == "iya" ]]; then
+                        break
+                # Memeriksa kondisi tambahan jika kondisi sebelumnya tidak terpenuhi, dengan memeriksa apakah variabel 'nanya' memiliki nilai 'tidak'.
+                elif [[ "${nanya}" == "tidak" ]]; then
+                        exit 0
+                # Menangani kondisi ketika semua pernyataan if dan elif sebelumnya tidak terpenuhi.
+                else
+                        echo "[-] Masukan tidak valid. Harap masukkan 'iya' atau 'tidak'."
+                        continue
+                fi
+        done
 }
 
 # Fungsi untuk menampilkan ucapan selamat datang di wpscry.
 function selamat_datang(){
-    # Membersihkan layar terminal.
-    clear
-    # Menampilkan ucapan selamat datang di wpscry.
-    echo "Selamat datang di wpscry!"
-    echo ""
+        # Membersihkan layar terminal.
+        clear
+        # Menampilkan ucapan selamat datang di wpscry.
+        echo "Selamat datang di wpscry!"
+        echo ""
 }
 
 # Fungsi untuk mengatur interface yang ingin digunakan.
