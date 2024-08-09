@@ -5,6 +5,13 @@
 # Jika ada bug atau masalah saat proses instalasi
 # laporkan di 'https://github.com/bgropay/bash4hacking/issues'
 
+function cek_koneksi_internet(){
+        if ! ping -c 1 8.8.8.8 >> /dev/null 2>&1; then
+                echo "[-] Anda tidak memiliki koneksi internet. Pastikan Anda memiliki koneksi internet untuk menginstal wpscry."
+		exit 1
+        fi
+}
+
 # url tools
 url_reaver="https://github.com/t6x/reaver-wps-fork-t6x"
 url_pixiewps="https://github.com/wiire-a/pixiewps"
