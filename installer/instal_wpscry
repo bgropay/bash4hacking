@@ -85,16 +85,47 @@ function instal_reaver(){
         echo "[*] Mengkloning reaver dari github..."
         sleep 3
         git clone "${url_reaver}"
+
         if [[ $? -eq 0 ]]; then
                 echo "[+] Reaver berhasil dikloning dari github."
         else
                 echo "[-] Reaver gagal dikloning dari github. Proses instalasi dihentikan."
                 exit 1
         fi
+
         cd "${path_reaver}/src"
+        echo "[*] Menghasilkan file Makefile..."
+        sleep 3
         ./configure
+
+        if [[ $? -eq 0 ]]; then
+                echo "[+] File Makefile berhasil dihasilkan."
+        else
+                echo "[-] File Makefile gagal dihasilkan. Proses instalasi dihentikan."
+                exit 1
+        fi
+
+        echo "[*] Mengkompilasi reaver..."
+        sleep 3
         make
+
+        if [[ $? -eq 0 ]]; then
+                echo "[+] reaver berhasil dikompilasi."
+        else
+                echo "[-] reaver gagal dikompilasi. Proses instalasi dihentikan."
+                exit 1
+        fi
+
+        echo "[*] Menginstal reaver..."
+        sleep 3
         make install
+
+        if [[ $? -eq 0 ]]; then
+                echo "[+] reaver berhasil diinstal."
+        else
+                echo "[-] reaver gagal diinstal. Proses instalasi dihentikan."
+                exit 1
+        fi    
 	
 	cd ../../ # kembali ke direktori '/opt'
 }
