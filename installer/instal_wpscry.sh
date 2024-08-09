@@ -7,13 +7,27 @@
 
 function cek_koneksi_internet(){
         echo "[*] Mengecek koneksi internet..."
-	sleep 5
+	
         if ping -c 1 8.8.8.8 >> /dev/null 2>&1; then
+	        sleep 3
                 echo "[+] Anda memiliki koneksi internet. Proses instalasi dapat dilanjutkan."
 	else
+                sleep 5
                 echo "[-] Anda tidak memiliki koneksi internet. Pastikan Anda memiliki koneksi internet untuk menginstal wpscry."
 		exit 1
         fi
+}
+
+function cek_git(){
+        echo "[*] Mengecek git..."
+	if command -v "git" >> /dev/null 2>&1; then
+                sleep 3
+                echo "[+] Git sudah terinstal."
+	else
+                sleep 5
+		echo "[-] Git belum terinstal. Pastikan git sudah terinstal untuk menginstal wpscry."
+                exit 1
+	fi
 }
 
 # url tools
