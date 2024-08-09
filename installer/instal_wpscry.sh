@@ -21,7 +21,7 @@ function cek_koneksi_internet(){
 # Fungsi untuk mengecek apakah Anda sudah menginstal git atau belum.
 function cek_git(){
         echo "[*] Mengecek git..."
-	if command -v "git" >> /dev/null 2>&1; then
+	if command -v git >> /dev/null 2>&1; then
                 sleep 3
                 echo "[+] Git sudah terinstal."
 	else
@@ -29,13 +29,13 @@ function cek_git(){
 		echo "[-] Git belum terinstal."
                 echo "[*] Menginstal git..."
 		sleep 3
-                apt-get install "git" -y
+                apt-get install git -y
 		if [[ $? -eq 0 ]]; then
                         echo "[+] Git berhasil diinstal. proses instalasi dapat dilanjutkan."
 		else
                         echo "[-] Git gagal diinstal. proses instalasi tidak dapat dilanjutkan."
 			exit 1
-                exit 1
+                fi
 	fi
 }
 
