@@ -218,7 +218,7 @@ function instal_aircrack(){
         # Menginstal seluruh dependensi yang diperlukan oleh aircrack-ng
         for dependensi_aircrack in "${daftar_dependensi_aircrack[@]}"; do
                 echo "[*] Menginstal dependensi '${dependensi_aircrack}'..."
-                apt-get install "${dependensi_aircrack}" -y
+                apt-get install "${dependensi_aircrack}" -y >> /dev/null 2>&1
                 if [[ $? -eq 0 ]]; then
                         sleep 3
                         echo "[+] Dependensi '${dependensi_aircrack}' berhasil diinstal."
@@ -229,13 +229,73 @@ function instal_aircrack(){
         done
 
         # Instal aircrack-ng
-        git clone "${url_aircrack}"
+        echo "[*] Mengkloning aircrack-ng dari github..."
+        sleep 3
+        git clone "${url_aircrack}" >> /dev/null 2>&1
+
+        if [[ $? -eq 0 ]]; then
+                echo "[+] aircrack-ng berhasil dikloning dari github."
+        else
+                echo "[-] aircrack-ng gagal dikloning dari github. Proses instalasi dihentikan."
+                exit 1
+        fi
+
         cd "${path_aircrack}"
-        autoreconf -i
-        ./configure --with-experimental
-        make
-        make install 
-        ldconfig
+
+        echo "[*] Menghasilkan file configure..."
+        sleep 3
+        autoreconf -i >> /dev/null 2>&1
+
+        if [[ $? -eq 0 ]]; then
+                echo "[+] File configure berhasil dihasilkan."
+        else
+                echo "[-] File configure gagal dihasilkan. Proses instalasi dihentikan."
+                exit 1
+        fi
+
+        echo "[*] Menghasilkan file Makefile..."
+        sleep 3
+        ./configure --with-experimental >> /dev/null 2>&1
+
+        if [[ $? -eq 0 ]]; then
+                echo "[+] File Makefile berhasil dihasilkan."
+        else
+                echo "[-] File Makefile gagal dihasilkan. Proses instalasi dihentikan."
+                exit 1
+        fi
+
+        echo "[*] Mengkompilasi aircrack-ng..."
+        sleep 3
+        make >> /dev/null 2>&1
+
+        if [[ $? -eq 0 ]]; then
+                echo "[+] aircrack-ng berhasil dikompilasi."
+        else
+                echo "[-] aircrack-ng gagal dikompilasi. Proses instalasi dihentikan."
+                exit 1
+        fi
+
+        echo "[*] Menginstal aircrack-ng..."
+        sleep 3
+        make install >> /dev/null 2>&1
+
+        if [[ $? -eq 0 ]]; then
+                echo "[+] aircrack-ng berhasil diinstal."
+        else
+                echo "[-] aircrack-ng gagal diinstal. Proses instalasi dihentikan."
+                exit 1
+        fi
+
+        echo "[*] Mengatur path library..."
+        sleep 3
+        ldconfig >> /dev/null 2>&1
+
+        if [[ $? -eq 0 ]]; then
+                echo "[+] Path library berhasil diatur."
+        else
+                echo "[-] Path library gagal diatur. Proses instalasi dihentikan."
+                exit 1
+        fi
 
         cd ../ # kembali ke direktori '/opt'
 }
