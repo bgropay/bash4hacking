@@ -340,6 +340,7 @@ function instal_wpscry(){
         cek_root
         cek_koneksi_internet
 	cek_git
+        pindah_folder
         instal_reaver
 	instal_pixiewps
         instal_aircrack
