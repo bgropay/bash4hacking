@@ -145,10 +145,40 @@ function instal_pixiewps(){
         # done
 
         # Instal pixiewps
-        git clone "${url_pixiewps}"
+        echo "[*] Mengkloning pixiewps dari github..."
+        sleep 3
+        git clone "${url_pixiewps}" >> /dev/null 2>&1
+
+        if [[ $? -eq 0 ]]; then
+                echo "[+] pixiewps berhasil dikloning dari github."
+        else
+                echo "[-] pixiewps gagal dikloning dari github. Proses instalasi dihentikan."
+                exit 1
+        fi
+
         cd "${path_pixiewps}"
-        make
-        make install
+
+        echo "[*] Mengkompilasi pixiewps..."
+        sleep 3
+        make >> /dev/null 2>&1
+
+        if [[ $? -eq 0 ]]; then
+                echo "[+] pixiewps berhasil dikompilasi."
+        else
+                echo "[-] pixiewps gagal dikompilasi. Proses instalasi dihentikan."
+                exit 1
+        fi
+
+        echo "[*] Menginstal pixiewps..."
+        sleep 3
+        make install >> /dev/null 2>&1
+
+        if [[ $? -eq 0 ]]; then
+                echo "[+] pixiewps berhasil diinstal."
+        else
+                echo "[-] pixiewps gagal diinstal. Proses instalasi dihentikan."
+                exit 1
+        fi
 
         cd ../ # kembali ke direktori '/opt'
 }
