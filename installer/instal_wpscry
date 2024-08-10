@@ -16,6 +16,26 @@ function cek_root(){
         fi
 }
 
+function konfirmasi(){
+        clear
+        echo "--------------------------------------------------------------------"
+        echo "Script ini merupakan script untuk menginstal wpscry secara otomatis."
+        echo "--------------------------------------------------------------------" 
+
+        while true; do
+                read -p "Apakah Anda ingin menginstal wpscry (iya/tidak): " nanya
+                if [[ "${nanya}" == "iya" ]]; then
+                        break
+                elif [[ "${nanya}" == "tidak" ]]; then
+                        exit 0
+                else
+                        echo "[-] Masukkan salah. Harap masukkan 'iya' atau 'tidak'."
+                        continue
+
+                fi
+        done
+}
+
 # Fungsi untuk mengecek apakah Anda memiliki koneksi internet atau tidak.
 function cek_koneksi_internet(){
         echo "[*] Mengecek koneksi internet..."
