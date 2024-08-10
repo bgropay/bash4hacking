@@ -40,7 +40,7 @@ function cek_git(){
 		echo "[-] Git belum terinstal."
                 echo "[*] Menginstal git..."
 		sleep 3
-                apt-get install git -y
+                apt-get install git -y >> /dev/null 2>&1
 		if [[ $? -eq 0 ]]; then
                         echo "[+] Git berhasil diinstal. proses instalasi dapat dilanjutkan."
 		else
@@ -71,7 +71,7 @@ function instal_reaver(){
         # Menginstal seluruh dependensi yang diperlukan oleh reaver 
         for dependensi_reaver in "${daftar_dependensi_reaver[@]}"; do
 	        echo "[*] Menginstal dependensi '${dependensi_reaver}'..."
-	        apt-get install "${dependensi_reaver}" -y
+	        apt-get install "${dependensi_reaver}" -y >> /dev/null 2>&1
 	        if [[ $? -eq 0 ]]; then
 	                sleep 3
 	                echo "[+] Dependensi '${dependensi_reaver}' berhasil diinstal."
@@ -84,7 +84,7 @@ function instal_reaver(){
         # Instal reaver.
         echo "[*] Mengkloning reaver dari github..."
         sleep 3
-        git clone "${url_reaver}"
+        git clone "${url_reaver}" >> /dev/null 2>&1
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] Reaver berhasil dikloning dari github."
@@ -96,7 +96,7 @@ function instal_reaver(){
         cd "${path_reaver}/src"
         echo "[*] Menghasilkan file Makefile..."
         sleep 3
-        ./configure
+        ./configure >> /dev/null 2>&1
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] File Makefile berhasil dihasilkan."
@@ -107,7 +107,7 @@ function instal_reaver(){
 
         echo "[*] Mengkompilasi reaver..."
         sleep 3
-        make
+        make >> /dev/null 2>&1
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] reaver berhasil dikompilasi."
@@ -118,7 +118,7 @@ function instal_reaver(){
 
         echo "[*] Menginstal reaver..."
         sleep 3
-        make install
+        make install >> /dev/null 2>&1
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] reaver berhasil diinstal."
