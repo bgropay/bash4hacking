@@ -21,7 +21,7 @@ function konfirmasi(){
         echo "--------------------------------------------------------------------"
         echo "Script ini merupakan script untuk menginstal wpscry secara otomatis."
         echo "--------------------------------------------------------------------" 
-
+        echo ""
         while true; do
                 read -p "Apakah Anda ingin menginstal wpscry (iya/tidak): " nanya
                 if [[ "${nanya}" == "iya" ]]; then
