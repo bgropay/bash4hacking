@@ -19,7 +19,7 @@ function cek_root(){
 # Fungsi untuk mengecek apakah Anda memiliki koneksi internet atau tidak.
 function cek_koneksi_internet(){
         echo "[*] Mengecek koneksi internet..."
-        if ping -c 1 8.8.8.8 >> /dev/null 2>&1; then
+        if ping -c 1 8.8.8.8 >> /dev/null; then
 	        sleep 3
                 echo "[+] Anda memiliki koneksi internet. Proses instalasi dapat dilanjutkan."
                 sleep 3
@@ -34,7 +34,7 @@ function cek_koneksi_internet(){
 # Fungsi untuk mengecek apakah Anda sudah menginstal git atau belum.
 function cek_git(){
         echo "[*] Mengecek git..."
-	if command -v git >> /dev/null 2>&1; then
+	if command -v git >> /dev/null; then
                 sleep 3
                 echo "[+] Git sudah terinstal."
                 sleep 3
@@ -44,7 +44,7 @@ function cek_git(){
                 sleep 3
                 echo "[*] Menginstal git..."
 		sleep 3
-                apt-get install git -y >> /dev/null 2>&1
+                apt-get install git -y >> /dev/null
 		if [[ $? -eq 0 ]]; then
                         echo "[+] Git berhasil diinstal. proses instalasi dapat dilanjutkan."
                         sleep 3
@@ -81,7 +81,7 @@ function instal_reaver(){
         for dependensi_reaver in "${daftar_dependensi_reaver[@]}"; do
 	        echo "[*] Menginstal dependensi '${dependensi_reaver}'..."
                 sleep 3
-	        apt-get install "${dependensi_reaver}" -y >> /dev/null 2>&1
+	        apt-get install "${dependensi_reaver}" -y >> /dev/null
 	        if [[ $? -eq 0 ]]; then
 	                echo "[+] Dependensi '${dependensi_reaver}' berhasil diinstal."
                         sleep 3
@@ -94,7 +94,7 @@ function instal_reaver(){
         # Instal reaver.
         echo "[*] Mengkloning reaver dari github..."
         sleep 3
-        git clone "${url_reaver}" >> /dev/null 2>&1
+        git clone "${url_reaver}" >> /dev/null
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] Reaver berhasil dikloning dari github."
@@ -108,7 +108,7 @@ function instal_reaver(){
         cd "${path_reaver}/src"
         echo "[*] Menghasilkan file Makefile..."
         sleep 3
-        ./configure >> /dev/null 2>&1
+        ./configure >> /dev/null
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] File Makefile berhasil dihasilkan."
@@ -121,7 +121,7 @@ function instal_reaver(){
 
         echo "[*] Mengkompilasi reaver..."
         sleep 3
-        make >> /dev/null 2>&1
+        make >> /dev/null
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] reaver berhasil dikompilasi."
@@ -134,7 +134,7 @@ function instal_reaver(){
 
         echo "[*] Menginstal reaver..."
         sleep 3
-        make install >> /dev/null 2>&1
+        make install >> /dev/null
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] reaver berhasil diinstal."
@@ -165,7 +165,7 @@ function instal_pixiewps(){
         # Instal pixiewps
         echo "[*] Mengkloning pixiewps dari github..."
         sleep 3
-        git clone "${url_pixiewps}" >> /dev/null 2>&1
+        git clone "${url_pixiewps}" >> /dev/null
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] pixiewps berhasil dikloning dari github."
@@ -180,7 +180,7 @@ function instal_pixiewps(){
 
         echo "[*] Mengkompilasi pixiewps..."
         sleep 3
-        make >> /dev/null 2>&1
+        make >> /dev/null
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] pixiewps berhasil dikompilasi."
@@ -193,7 +193,7 @@ function instal_pixiewps(){
 
         echo "[*] Menginstal pixiewps..."
         sleep 3
-        make install >> /dev/null 2>&1
+        make install >> /dev/null
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] pixiewps berhasil diinstal."
@@ -243,7 +243,7 @@ function instal_aircrack(){
         for dependensi_aircrack in "${daftar_dependensi_aircrack[@]}"; do
                 echo "[*] Menginstal dependensi '${dependensi_aircrack}'..."
                 sleep 3
-                apt-get install "${dependensi_aircrack}" -y >> /dev/null 2>&1
+                apt-get install "${dependensi_aircrack}" -y >> /dev/null
                 if [[ $? -eq 0 ]]; then
                         echo "[+] Dependensi '${dependensi_aircrack}' berhasil diinstal."
                         sleep 3
@@ -256,7 +256,7 @@ function instal_aircrack(){
         # Instal aircrack-ng
         echo "[*] Mengkloning aircrack-ng dari github..."
         sleep 3
-        git clone "${url_aircrack}" >> /dev/null 2>&1
+        git clone "${url_aircrack}" >> /dev/null
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] aircrack-ng berhasil dikloning dari github."
@@ -271,7 +271,7 @@ function instal_aircrack(){
 
         echo "[*] Menghasilkan file configure..."
         sleep 3
-        autoreconf -i >> /dev/null 2>&1
+        autoreconf -i >> /dev/null
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] File configure berhasil dihasilkan."
@@ -284,7 +284,7 @@ function instal_aircrack(){
 
         echo "[*] Menghasilkan file Makefile..."
         sleep 3
-        ./configure --with-experimental >> /dev/null 2>&1
+        ./configure --with-experimental >> /dev/null
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] File Makefile berhasil dihasilkan."
@@ -297,7 +297,7 @@ function instal_aircrack(){
 
         echo "[*] Mengkompilasi aircrack-ng..."
         sleep 3
-        make >> /dev/null 2>&1
+        make >> /dev/null
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] aircrack-ng berhasil dikompilasi."
@@ -310,7 +310,7 @@ function instal_aircrack(){
 
         echo "[*] Menginstal aircrack-ng..."
         sleep 3
-        make install >> /dev/null 2>&1
+        make install >> /dev/null
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] aircrack-ng berhasil diinstal."
@@ -323,7 +323,7 @@ function instal_aircrack(){
 
         echo "[*] Mengatur path library..."
         sleep 3
-        ldconfig >> /dev/null 2>&1
+        ldconfig >> /dev/null
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] Path library berhasil diatur."
