@@ -50,6 +50,7 @@ function cek_git(){
 	fi
 }
 
+# Fungsi untuk pindah ke folder '/opt'
 function pindah_folder(){
         # Pindah ke folder '/opt'
         cd "${path_app}"
