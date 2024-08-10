@@ -358,6 +358,7 @@ function instal_aircrack(){
 # Fungsi untuk menginstal wpscray.
 function instal_wpscry(){
         cek_root
+        konfirmasi
         cek_koneksi_internet
 	cek_git
         pindah_folder
