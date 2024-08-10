@@ -21,11 +21,11 @@ function cek_koneksi_internet(){
         echo "[*] Mengecek koneksi internet..."
         if ping -c 1 8.8.8.8 >> /dev/null; then
 	        sleep 3
-                echo "[+] Anda memiliki koneksi internet. Proses instalasi dapat dilanjutkan."
+                echo "[+] Anda memiliki koneksi internet."
                 sleep 3
 	else
                 sleep 5
-                echo "[-] Anda tidak memiliki koneksi internet. Proses instalasi tidak dapat dilanjutkan."
+                echo "[-] Anda tidak memiliki koneksi internet. Proses instalasi dihentikan."
                 sleep 3
 		exit 1
         fi
@@ -46,10 +46,10 @@ function cek_git(){
 		sleep 3
                 apt-get install git -y >> /dev/null
 		if [[ $? -eq 0 ]]; then
-                        echo "[+] Git berhasil diinstal. proses instalasi dapat dilanjutkan."
+                        echo "[+] Git berhasil diinstal."
                         sleep 3
 		else
-                        echo "[-] Git gagal diinstal. proses instalasi tidak dapat dilanjutkan."
+                        echo "[-] Git gagal diinstal. Proses instalasi dihentikan."
                         sleep 3
 			exit 1
                 fi
