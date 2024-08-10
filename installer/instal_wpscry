@@ -19,12 +19,11 @@ function cek_root(){
 # Fungsi untuk mengecek apakah Anda memiliki koneksi internet atau tidak.
 function cek_koneksi_internet(){
         echo "[*] Mengecek koneksi internet..."
+        sleep 3
         if ping -c 1 8.8.8.8 >> /dev/null; then
-	        sleep 3
                 echo "[+] Anda memiliki koneksi internet."
                 sleep 3
 	else
-                sleep 5
                 echo "[-] Anda tidak memiliki koneksi internet. Proses instalasi dihentikan."
                 sleep 3
 		exit 1
@@ -34,12 +33,11 @@ function cek_koneksi_internet(){
 # Fungsi untuk mengecek apakah Anda sudah menginstal git atau belum.
 function cek_git(){
         echo "[*] Mengecek git..."
+        sleep 3
 	if command -v git >> /dev/null; then
-                sleep 3
                 echo "[+] Git sudah terinstal."
                 sleep 3
 	else
-                sleep 5
 		echo "[-] Git belum terinstal."
                 sleep 3
                 echo "[*] Menginstal git..."
