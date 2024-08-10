@@ -50,8 +50,10 @@ function cek_git(){
 	fi
 }
 
-# Pindah ke folder '/opt'
-cd "${path_app}"
+function pindah_folder(){
+        # Pindah ke folder '/opt'
+        cd "${path_app}"
+}
 
 # Fungsi untuk menginstal tools reaver.
 function instal_reaver(){
