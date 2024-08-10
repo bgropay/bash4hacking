@@ -22,9 +22,11 @@ function cek_koneksi_internet(){
         if ping -c 1 8.8.8.8 >> /dev/null 2>&1; then
 	        sleep 3
                 echo "[+] Anda memiliki koneksi internet. Proses instalasi dapat dilanjutkan."
+                sleep 3
 	else
                 sleep 5
                 echo "[-] Anda tidak memiliki koneksi internet. Proses instalasi tidak dapat dilanjutkan."
+                sleep 3
 		exit 1
         fi
 }
@@ -35,16 +37,20 @@ function cek_git(){
 	if command -v git >> /dev/null 2>&1; then
                 sleep 3
                 echo "[+] Git sudah terinstal."
+                sleep 3
 	else
                 sleep 5
 		echo "[-] Git belum terinstal."
+                sleep 3
                 echo "[*] Menginstal git..."
 		sleep 3
                 apt-get install git -y >> /dev/null 2>&1
 		if [[ $? -eq 0 ]]; then
                         echo "[+] Git berhasil diinstal. proses instalasi dapat dilanjutkan."
+                        sleep 3
 		else
                         echo "[-] Git gagal diinstal. proses instalasi tidak dapat dilanjutkan."
+                        sleep 3
 			exit 1
                 fi
 	fi
@@ -74,13 +80,14 @@ function instal_reaver(){
         # Menginstal seluruh dependensi yang diperlukan oleh reaver 
         for dependensi_reaver in "${daftar_dependensi_reaver[@]}"; do
 	        echo "[*] Menginstal dependensi '${dependensi_reaver}'..."
+                sleep 3
 	        apt-get install "${dependensi_reaver}" -y >> /dev/null 2>&1
 	        if [[ $? -eq 0 ]]; then
-	                sleep 3
 	                echo "[+] Dependensi '${dependensi_reaver}' berhasil diinstal."
+                        sleep 3
 		else
-                        sleep 5
 			echo "[-] Dependensi '${dependensi_reaver}' gagal diinstal."
+                        sleep 3
                 fi
         done
 
@@ -91,8 +98,10 @@ function instal_reaver(){
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] Reaver berhasil dikloning dari github."
+                sleep 3
         else
                 echo "[-] Reaver gagal dikloning dari github. Proses instalasi dihentikan."
+                sleep 3
                 exit 1
         fi
 
@@ -103,8 +112,10 @@ function instal_reaver(){
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] File Makefile berhasil dihasilkan."
+                sleep 3
         else
                 echo "[-] File Makefile gagal dihasilkan. Proses instalasi dihentikan."
+                sleep 3
                 exit 1
         fi
 
@@ -114,8 +125,10 @@ function instal_reaver(){
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] reaver berhasil dikompilasi."
+                sleep 3
         else
                 echo "[-] reaver gagal dikompilasi. Proses instalasi dihentikan."
+                sleep 3
                 exit 1
         fi
 
@@ -125,8 +138,10 @@ function instal_reaver(){
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] reaver berhasil diinstal."
+                sleep 3
         else
                 echo "[-] reaver gagal diinstal. Proses instalasi dihentikan."
+                sleep 3
                 exit 1
         fi    
 	
@@ -154,8 +169,10 @@ function instal_pixiewps(){
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] pixiewps berhasil dikloning dari github."
+                sleep 3
         else
                 echo "[-] pixiewps gagal dikloning dari github. Proses instalasi dihentikan."
+                sleep 3
                 exit 1
         fi
 
@@ -167,8 +184,10 @@ function instal_pixiewps(){
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] pixiewps berhasil dikompilasi."
+                sleep 3
         else
                 echo "[-] pixiewps gagal dikompilasi. Proses instalasi dihentikan."
+                sleep 3
                 exit 1
         fi
 
@@ -178,8 +197,10 @@ function instal_pixiewps(){
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] pixiewps berhasil diinstal."
+                sleep 3
         else
                 echo "[-] pixiewps gagal diinstal. Proses instalasi dihentikan."
+                sleep 3
                 exit 1
         fi
 
@@ -221,13 +242,14 @@ function instal_aircrack(){
         # Menginstal seluruh dependensi yang diperlukan oleh aircrack-ng
         for dependensi_aircrack in "${daftar_dependensi_aircrack[@]}"; do
                 echo "[*] Menginstal dependensi '${dependensi_aircrack}'..."
+                sleep 3
                 apt-get install "${dependensi_aircrack}" -y >> /dev/null 2>&1
                 if [[ $? -eq 0 ]]; then
-                        sleep 3
                         echo "[+] Dependensi '${dependensi_aircrack}' berhasil diinstal."
+                        sleep 3
                 else
-                        sleep 5
                         echo "[-] Dependensi '${dependensi_aircrack}' gagal diinstal."
+                        sleep 3
                 fi
         done
 
@@ -238,8 +260,10 @@ function instal_aircrack(){
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] aircrack-ng berhasil dikloning dari github."
+                sleep 3
         else
                 echo "[-] aircrack-ng gagal dikloning dari github. Proses instalasi dihentikan."
+                sleep 3
                 exit 1
         fi
 
@@ -251,8 +275,10 @@ function instal_aircrack(){
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] File configure berhasil dihasilkan."
+                sleep 3
         else
                 echo "[-] File configure gagal dihasilkan. Proses instalasi dihentikan."
+                sleep 3
                 exit 1
         fi
 
@@ -262,8 +288,10 @@ function instal_aircrack(){
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] File Makefile berhasil dihasilkan."
+                sleep 3
         else
                 echo "[-] File Makefile gagal dihasilkan. Proses instalasi dihentikan."
+                sleep 3
                 exit 1
         fi
 
@@ -273,8 +301,10 @@ function instal_aircrack(){
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] aircrack-ng berhasil dikompilasi."
+                sleep 3
         else
                 echo "[-] aircrack-ng gagal dikompilasi. Proses instalasi dihentikan."
+                sleep 3
                 exit 1
         fi
 
@@ -284,8 +314,10 @@ function instal_aircrack(){
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] aircrack-ng berhasil diinstal."
+                sleep 3
         else
                 echo "[-] aircrack-ng gagal diinstal. Proses instalasi dihentikan."
+                sleep 3
                 exit 1
         fi
 
@@ -295,8 +327,10 @@ function instal_aircrack(){
 
         if [[ $? -eq 0 ]]; then
                 echo "[+] Path library berhasil diatur."
+                sleep 3
         else
                 echo "[-] Path library gagal diatur. Proses instalasi dihentikan."
+                sleep 3
                 exit 1
         fi
 
